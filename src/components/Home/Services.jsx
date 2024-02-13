@@ -8,7 +8,7 @@ const Services = () => {
     <section className="my-12">
       <Wrapper>
         <div className="flex lg:flex-row flex-col gap-6 ">
-          <div className="relative max-w-full w-full  lg:w-[500px]  lg:flex-1  h-[400px] lg:h-[350px]">
+          <div className="relative max-w-full w-full  lg:w-[500px]  lg:flex-1  h-[350px]">
             <Image
               src={"/home/service.png"}
               alt="service"
