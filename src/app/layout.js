@@ -1,3 +1,4 @@
+import Navigation from "@/components/shared/Navigation";
 import "./globals.css";
 
 export const metadata = {

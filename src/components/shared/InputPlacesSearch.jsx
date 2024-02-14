@@ -10,24 +10,30 @@ const InputPlacesSearch = () => {
     });
   const [value, setValue] = useState("");
 
+  console.log(placePredictions);
   return (
     <div className="w-[80%]  sm:w-1/2">
       <div className="relative w-full">
         <CiSearch className="absolute top-5 left-4 text-gray-500 text-[18px] sm:text-[20px] lg:text-[24px] " />
         <input
-          class="w-full pl-12  py-5 rounded-full    focus:outline-none placeholder-gray-500 bg-white shadow-lg text-[12px] sm:text-[14px] lg:text-[16px]"
+          className="w-full pl-12  py-5 rounded-full    focus:outline-none placeholder-gray-500 bg-white shadow-lg text-[12px] sm:text-[14px] lg:text-[16px]"
           type="text"
-          placeholder="Enter your email"
+          value={value}
+          placeholder="Enter your address"
+          onChange={(evt) => {
+            getPlacePredictions({ input: evt.target.value });
+            setValue(evt.target.value);
+          }}
         />
         <button
-          class="absolute right-2 top-2  rounded-full border-none bg-primaryColor  text-white text-lg cursor-pointer px-4 py-3  focus:outline-none font-semibold text-[16px]  hidden custom-md:block "
+          className="absolute right-2 top-2  rounded-full border-none bg-primaryColor  text-white text-lg cursor-pointer px-4 py-3  focus:outline-none font-semibold text-[16px]  hidden custom-md:block "
           type="submit"
         >
           Place Order
         </button>
       </div>
       <button
-        class="  rounded-full border-none bg-primaryColor  text-white text-lg cursor-pointer px-4 py-3  focus:outline-none font-semibold text-[12px]  block custom-md:hidden mt-4 mx-auto"
+        className="  rounded-full border-none bg-primaryColor  text-white text-lg cursor-pointer px-4 py-3  focus:outline-none font-semibold text-[12px]  block custom-md:hidden mt-4 mx-auto"
         type="submit"
       >
         Place Order

@@ -1,7 +1,9 @@
-import { FaqAccordian } from "@/components/Home/FaqAccordian";
+import Contact from "@/components/Home/Contact";
+import Faq from "@/components/Home/Faq";
+import Footer from "@/components/Home/Footer";
 import Hero from "@/components/Home/Hero";
-import Navigation from "@/components/Home/Navigation";
 import Services from "@/components/Home/Services";
+import Navigation from "@/components/shared/Navigation";
 
 export default function Home() {
   return (
@@ -9,6 +11,9 @@ export default function Home() {
       <Navigation />
       <Hero />
       <Services />
+      <Faq />
+      <Contact />
+      <Footer />
     </>
   );
 }

@@ -2,6 +2,26 @@ import Image from "next/image";
 import React from "react";
 import { PrimaryButton } from "../shared/Button";
 import Wrapper from "../shared/Wrapper";
+import image1 from "../../../public/home/service-1.png";
+import image2 from "../../../public/home/service-2.png";
+import image3 from "../../../public/home/service-3.png";
+const services = [
+  {
+    id: 1,
+    content: "Residential Water Tanks",
+    image: image1,
+  },
+  {
+    id: 2,
+    content: "Swimming Pools & Ponds",
+    image: image2,
+  },
+  {
+    id: 3,
+    content: "Commercial Sites",
+    image: image3,
+  },
+];
 
 const Services = () => {
   return (
@@ -29,6 +49,50 @@ const Services = () => {
             <PrimaryButton styles={"justify-self-start self-start"}>
               Learn More
             </PrimaryButton>
+          </div>
+        </div>
+        {/*   Grid */}
+        <div className="grid  grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 sm:space-x-4 mt-12">
+          {services.map((service) => (
+            <div key={service.id} className="flex-col space-y-3  ">
+              <div className="w-full h-[300px] relative ">
+                <Image
+                  src={service.image}
+                  alt={service.content}
+                  fill
+                  className="w-full h-full object-cover rounded-lg"
+                  priority
+                />
+              </div>
+              <p className="font-medium text-[16px]">{service.content}</p>
+            </div>
+          ))}
+        </div>
+        {/*  Quality Service */}
+        <div className="mt-14 flex flex-col space-y-3">
+          <div className="flex flex-col space-y-4">
+            <h2 className="font-bold text-[28px] md:text-[32px] leading-[30px] md:leading-[40px]">
+              Superior Quality Spring Water
+            </h2>
+            <p>
+              Do you dislike the taste of chlorinated water from the town
+              supply? Would you prefer natural spring water with additional
+              health benefits?
+            </p>
+          </div>
+          <div className="h-[500px] w-full service-bg py-6 rounded-lg px-4 flex flex-col justify-end">
+            <p className="  text-white font-bold text-[14px] md:text-[16px]  justify-self-end">
+              We can provide premium quality water from a local aqueduct in the
+              pristine Aranival Valley. It is naturally rich in minerals
+              including calcium, magnesium, sodium, and potassium. With a pH of
+              9, this alkaline water helps neutralize the acid in your body,
+              helping you to maintain an optimal state of health and making it a
+              superior choice for your home and family.
+            </p>
+          </div>
+          <div className="flex space-x-4">
+            <PrimaryButton>Learn More</PrimaryButton>
+            <button className="font-bold">Contact Us</button>
           </div>
         </div>
       </Wrapper>

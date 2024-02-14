@@ -101,3 +101,10 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.service-bg {
+  background: url("/home/service-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
