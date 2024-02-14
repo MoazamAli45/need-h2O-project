@@ -11,6 +11,7 @@ const AboutSection = () => {
               src="/about/about.jpg"
               alt="About Us"
               fill
+              priority
               className="w-full h-full object-cover object-center rounded-lg"
             />
           </div>
@@ -76,6 +77,7 @@ const AboutSection = () => {
               alt="blake-civil"
               width={300}
               height={120}
+              priority
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
             <div className="flex flex-col space-y-4">

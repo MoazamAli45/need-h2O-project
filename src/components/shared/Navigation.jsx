@@ -15,7 +15,7 @@ const Navigation = () => {
   };
   return (
     <div>
-      <Wrapper styles="px-4 sm:px-8 md:px-14">
+      <Wrapper styles="px-0 sm:px-8 md:px-14">
         <div className="flex justify-between items-center py-4 ">
           <Image
             src={"/home/logo.svg"}

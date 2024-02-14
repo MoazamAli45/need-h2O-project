@@ -5,7 +5,7 @@ import InputPlacesSearch from "../shared/InputPlacesSearch";
 const Hero = () => {
   return (
     <section>
-      <Wrapper styles=" px-4 sm:px-8 md:px-24 ">
+      <Wrapper styles=" px-0 sm:px-8 md:px-24 ">
         <div className="hero-bg   rounded-lg px-4 sm:px-8 md:px-16 py-[80px] sm:py-[100px]  h-[600px]  lg:h-[500px]">
           <h1 className="text-[40px] md:text-[48px] font-extrabold text-center text-white">
             Please enter your address below for phone and order.
