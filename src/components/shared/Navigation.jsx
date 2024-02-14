@@ -73,17 +73,32 @@ const Navigation = () => {
         >
           <ul className="relative flex flex-col py-8 ">
             <li>
-              <Link href="/" className="block py-2 px-4 text-[14px] ">
+              <Link
+                href="/"
+                className={`block py-2 px-4 text-[14px] ${
+                  pathname === "/" ? "font-bold" : "font-medium "
+                }`}
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/about" className="block py-2 px-4 text-[14px]">
+              <Link
+                href="/about"
+                className={`block py-2 px-4 text-[14px] ${
+                  pathname === "/about" ? "font-bold" : "font-medium "
+                }`}
+              >
                 About Us
               </Link>
             </li>
             <li>
-              <Link href="/services" className="block py-2 px-4 text-[14px]">
+              <Link
+                href="/services"
+                className={`block py-2 px-4 text-[14px] ${
+                  pathname === "/services" ? "font-bold" : "font-medium "
+                }`}
+              >
                 Water Services
               </Link>
             </li>
