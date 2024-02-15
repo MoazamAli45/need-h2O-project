@@ -120,10 +120,8 @@ body {
 @media (max-width: 600px) {
   .stepper {
     display: flex;
-    align-items: center;
-    justify-content: start;
     gap: 20px;
-    align-content: start;
+    align-items: center;
     flex-direction: column;
   }
 }
