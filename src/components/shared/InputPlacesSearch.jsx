@@ -23,11 +23,13 @@ const InputPlacesSearch = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    const city = value.split(",");
+    const cityName = city[city.length - 2].trim();
+    console.log("City Name", cityName);
     const cityFound = cityWaterPrices.filter((item) =>
-      value.includes(item.city)
+      cityName.includes(item.city)
     );
-    // const townWaterPrice = cityWaterPrices[city]?.townWaterPrice;
-    // const pureWaterPrice = cityWaterPrices[city]?.pureWaterPrice;
+
     console.log(cityFound);
   };
   return (
@@ -40,8 +42,8 @@ const InputPlacesSearch = () => {
           value={value}
           placeholder="Enter your address"
           onChange={(evt) => {
-            getPlacePredictionsForNZ(evt.target.value);
             setValue(evt.target.value);
+            getPlacePredictionsForNZ(evt.target.value);
             setShowCities(true);
           }}
         />

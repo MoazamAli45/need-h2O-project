@@ -1,6 +1,7 @@
 import React from "react";
 import Wrapper from "../shared/Wrapper";
 import InputPlacesSearch from "../shared/InputPlacesSearch";
+import SearchInput from "../shared/SearchInput";
 
 const Hero = () => {
   return (
@@ -14,7 +15,8 @@ const Hero = () => {
             Enter an address to place order
           </p>
           <div className="flex items-center justify-center w-full mt-4 z-10">
-            <InputPlacesSearch />
+            {/* <InputPlacesSearch /> */}
+            <SearchInput />
           </div>
         </div>
         <p className="text-[14px] text-[#A1824A] font-medium text-center mt-2  ">
