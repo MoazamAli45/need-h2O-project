@@ -1,5 +1,6 @@
 import Navigation from "@/components/shared/Navigation";
 import "./globals.css";
+import { OrderProvider } from "@/context/OrderProvider";
 
 export const metadata = {
   title: "Create Next App",
@@ -9,7 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <OrderProvider>
+        <body>{children}</body>
+      </OrderProvider>
     </html>
   );
 }
