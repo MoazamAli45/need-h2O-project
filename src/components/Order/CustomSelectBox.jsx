@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 
 import {
@@ -16,11 +17,16 @@ function CustomSelectBox() {
   const { order } = React.useContext(OrderContext);
   const { details } = order;
 
-  console.log(SelectValue);
+  const [selectedValue, setSelectedValue] = React.useState("");
+
+  const handleChange = (newValue) => {
+    setSelectedValue(newValue);
+  };
+  console.log(selectedValue);
   return (
     <div className="flex flex-col gap-4">
       <Label> Service:</Label>
-      <Select>
+      <Select value={selectedValue} onValueChange={handleChange}>
         <SelectTrigger className="w-full md:w-[80%]">
           <SelectValue placeholder="Select a Service" />
         </SelectTrigger>
