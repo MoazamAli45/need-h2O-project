@@ -22,19 +22,24 @@ function CustomSelectBox() {
   const handleChange = (newValue) => {
     setSelectedValue(newValue);
   };
+  console.log("Detailes", details);
   console.log(selectedValue);
   return (
     <div className="flex flex-col gap-4">
       <Label> Service:</Label>
       <Select value={selectedValue} onValueChange={handleChange}>
         <SelectTrigger className="w-full md:w-[80%]">
-          <SelectValue placeholder="Select a Service" />
+          <SelectValue placeholder="Select a Service" value={selectedValue} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Services</SelectLabel>
-            <SelectItem value={"apple"}>Apple</SelectItem>
-            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value={details[0]?.townWaterPrice}>
+              TownWater(${details[0]?.townWaterPrice})
+            </SelectItem>
+            <SelectItem value={details[0]?.pureWaterPrice}>
+              PureWater(${details[0]?.pureWaterPrice})
+            </SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
