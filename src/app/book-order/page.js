@@ -4,23 +4,31 @@ import Navigation from "@/components/shared/Navigation";
 import OrderContext from "@/context/OrderProvider";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
-
+import { MdLocationPin } from "react-icons/md";
+import { MdWaterDrop } from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
+import { FaDollarSign } from "react-icons/fa";
+import OrderOptions from "@/components/Order/OrderOptions";
 const CHECKOUT_STEPS = [
   {
-    name: "Customer Info",
-    Component: () => <div>Provide your contact details.</div>,
+    name: "My Location",
+    Component: () => <></>,
+    icon: <MdLocationPin color="white" />,
   },
   {
-    name: "Shipping Info",
-    Component: () => <div>Enter your shipping address.</div>,
+    name: "Order Options",
+    Component: () => <OrderOptions />,
+    icon: <MdWaterDrop color="white" />,
+  },
+  {
+    name: "Delivery Details",
+    Component: () => <div>Complete payment for your order.</div>,
+    icon: <CgProfile color="white" />,
   },
   {
     name: "Payment",
-    Component: () => <div>Complete payment for your order.</div>,
-  },
-  {
-    name: "Delivered",
     Component: () => <div> Your order has been delivered.</div>,
+    icon: <FaDollarSign color="white" />,
   },
 ];
 

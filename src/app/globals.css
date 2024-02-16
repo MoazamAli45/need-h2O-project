@@ -31,7 +31,8 @@
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
+    /* --ring: 224 71.4% 4.1%; */
+    --ring: 211 1% 0.5%;
 
     --radius: 0.5rem;
   }
@@ -150,6 +151,7 @@ body {
 
 .active .step-number {
   background-color: #007bff;
+  /* #6366f1 */
   color: #fff;
 }
 

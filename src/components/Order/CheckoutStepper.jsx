@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Wrapper from "../shared/Wrapper";
 
 const CheckoutStepper = ({ stepsConfig = [] }) => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(2);
   const [isComplete, setIsComplete] = useState(false);
   const [margins, setMargins] = useState({
     marginLeft: 0,
@@ -56,7 +56,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
                 {currentStep > index + 1 || isComplete ? (
                   <span>&#10003;</span>
                 ) : (
-                  index + 1
+                  step.icon
                 )}
               </div>
               <div className="step-name">{step.name}</div>
@@ -65,7 +65,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
         })}
 
         <div
-          className="progress-bar"
+          className="progress-bar "
           style={{
             width: `calc(100%-${margins.marginLeft + margins.marginRight}px)`,
             marginLeft: margins.marginLeft,
@@ -73,7 +73,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
           }}
         >
           <div
-            className="progress"
+            className="progress "
             style={{ width: `${calculateProgressBarWidth()}%` }}
           ></div>
         </div>
