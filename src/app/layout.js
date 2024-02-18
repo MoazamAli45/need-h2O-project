@@ -3,6 +3,7 @@ import "./globals.css";
 import { OrderProvider } from "@/context/OrderProvider";
 import { Toaster } from "@/components/ui/sonner";
 import Footer from "@/components/shared/Footer";
+import Layout from "@/components/shared/Layout";
 
 export const metadata = {
   title: "Create Next App",
@@ -12,15 +13,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <OrderProvider>
-        <body>
-          <Navigation />
-
-          {children}
-          <Footer />
-        </body>
-        <Toaster richColors />
-      </OrderProvider>
+      <body>
+        <OrderProvider>
+          <Layout>{children}</Layout>
+          <Toaster richColors />
+        </OrderProvider>
+      </body>
     </html>
   );
 }

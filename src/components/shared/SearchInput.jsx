@@ -62,13 +62,16 @@ const SearchInput = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("City Water Prices", "clicked");
     let lastSubstring = "";
     const commaIndex = query.lastIndexOf(",");
+    console.log(commaIndex, "Comma Index");
     if (commaIndex !== -1) {
       lastSubstring = query.substring(commaIndex + 2);
+    } else if (query === "Dairy Flat") {
+      lastSubstring = "Dairy Flat";
     } else {
       const words = query.split(" ");
+
       lastSubstring = words[words.length - 1];
     }
 
@@ -78,7 +81,7 @@ const SearchInput = () => {
     );
 
     if (cityFound.length > 0) {
-      // console.log(cityFound);
+      console.log(cityFound);
       setDetails(cityFound[0]);
       router.push("/book-order");
     } else {
