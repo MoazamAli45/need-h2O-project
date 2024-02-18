@@ -1,6 +1,5 @@
 "use client";
 import CheckoutStepper from "@/components/Order/CheckoutStepper";
-import Navigation from "@/components/shared/Navigation";
 import OrderContext from "@/context/OrderProvider";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
@@ -44,8 +43,6 @@ const Page = () => {
   }
   return (
     <>
-      <Navigation />
-
       <CheckoutStepper stepsConfig={CHECKOUT_STEPS} />
     </>
   );

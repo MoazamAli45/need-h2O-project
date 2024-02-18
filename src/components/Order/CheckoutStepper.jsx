@@ -5,6 +5,7 @@ import Wrapper from "../shared/Wrapper";
 import { Button } from "../ui/button";
 import OrderContext from "@/context/OrderProvider";
 import { toast } from "sonner";
+import axios from "axios";
 
 const CheckoutStepper = ({ stepsConfig = [] }) => {
   const [currentStep, setCurrentStep] = useState(2);
@@ -77,6 +78,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
         body: JSON.stringify(order),
       });
 
+      console.log(res, "Res");
       if (!res.ok) {
         throw new Error("Something went wrong!");
       }
@@ -84,6 +86,24 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       const data = await res.json();
       console.log(data?.data, "Data From Server ");
       toast.success("Order Submitted Successfully");
+
+      //   STRIPE CHECKOUT
+
+      const stripeRes = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data?.data._id),
+      });
+      if (!stripeRes.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const stripeData = await stripeRes.json();
+      if (stripeData?.success) {
+        window.location.href = stripeData.url;
+      }
     } catch (error) {
       toast.error(error.message);
     }

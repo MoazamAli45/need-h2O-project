@@ -1,12 +1,12 @@
 import React from "react";
-import Wrapper from "../shared/Wrapper";
+import Wrapper from "./Wrapper";
 import Link from "next/link";
 import { CiFacebook } from "react-icons/ci";
 import { CiTwitter } from "react-icons/ci";
 import { RxInstagramLogo } from "react-icons/rx";
 
 const Footer = () => (
-  <footer className="mb-6">
+  <footer className="mb-2 md:mb-6">
     <Wrapper>
       <div className="flex justify-around">
         <Link

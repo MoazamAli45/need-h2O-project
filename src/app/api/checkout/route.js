@@ -2,21 +2,26 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-console.log(process.env.STRIPE_SECRET_KEY, "SECRET KEY");
 import Order from "@/model/Order";
-export const POST = async (req, res) => {
+import connect from "@/utils/db";
+export const POST = async (req) => {
   try {
+    console.log("checkout");
+    await connect();
+
     const body = await req.json();
-    const order = await Order.findById(body._id);
+    console.log(body, "Body");
+    const order = await Order.findById(body);
+    console.log(order, "Order");
     order.submitted = true;
 
     await order.save();
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      success_url: `/checkout-success`,
-      cancel_url: `/`,
-      //   customer_email: req.user.email,
+      success_url: `${process.env.CLIENT_URL}/checkout-success`,
+      cancel_url: `${process.env.CLIENT_URL}/`,
+      customer_email: order.profile.email,
       //   client_reference_id: req.params.orderId,
       mode: "payment",
       line_items: [
@@ -33,15 +38,20 @@ export const POST = async (req, res) => {
       ],
     });
 
-    return new NextResponse({
-      success: true,
-      url: session.url,
-      session,
-    });
+    return new NextResponse(
+      JSON.stringify({
+        success: true,
+        url: session.url,
+        session,
+      })
+    );
   } catch (err) {
-    return new NextResponse({
-      status: 400,
-      error: err.message,
-    });
+    console.log(err);
+    return new NextResponse(
+      JSON.stringify({
+        status: 400,
+        error: err.message,
+      })
+    );
   }
 };

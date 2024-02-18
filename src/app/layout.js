@@ -2,6 +2,7 @@ import Navigation from "@/components/shared/Navigation";
 import "./globals.css";
 import { OrderProvider } from "@/context/OrderProvider";
 import { Toaster } from "@/components/ui/sonner";
+import Footer from "@/components/shared/Footer";
 
 export const metadata = {
   title: "Create Next App",
@@ -12,7 +13,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <OrderProvider>
-        <body>{children}</body>
+        <body>
+          <Navigation />
+
+          {children}
+          <Footer />
+        </body>
         <Toaster richColors />
       </OrderProvider>
     </html>
