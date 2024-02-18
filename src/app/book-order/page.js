@@ -9,6 +9,7 @@ import { MdWaterDrop } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { FaDollarSign } from "react-icons/fa";
 import OrderOptions from "@/components/Order/OrderOptions";
+import DeliveryDetails from "@/components/Order/DeliveryDetails";
 const CHECKOUT_STEPS = [
   {
     name: "My Location",
@@ -22,7 +23,7 @@ const CHECKOUT_STEPS = [
   },
   {
     name: "Delivery Details",
-    Component: () => <div>Complete payment for your order.</div>,
+    Component: () => <DeliveryDetails />,
     icon: <CgProfile color="white" />,
   },
   {

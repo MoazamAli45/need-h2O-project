@@ -14,7 +14,7 @@ import { Label } from "../ui/label";
 import OrderContext from "@/context/OrderProvider";
 
 function CustomSelectBox() {
-  const { order } = React.useContext(OrderContext);
+  const { order, setPrice } = React.useContext(OrderContext);
   const { details } = order;
 
   const [selectedValue, setSelectedValue] = React.useState("");
@@ -22,8 +22,18 @@ function CustomSelectBox() {
   const handleChange = (newValue) => {
     setSelectedValue(newValue);
   };
-  console.log("Detailes", details);
+  // console.log("Detailes", details);
   console.log(selectedValue);
+
+  React.useEffect(() => {
+    if (selectedValue === details?.townWaterPrice) {
+      setPrice(details?.townWaterPrice);
+    } else if (selectedValue === details?.pureWaterPrice) {
+      setPrice(details?.pureWaterPrice);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedValue]);
+
   return (
     <div className="flex flex-col gap-4">
       <Label> Service:</Label>
@@ -34,11 +44,15 @@ function CustomSelectBox() {
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Services</SelectLabel>
-            <SelectItem value={details[0]?.townWaterPrice}>
-              TownWater(${details[0]?.townWaterPrice})
+            <SelectItem
+              value={details?.townWaterPrice ? details?.townWaterPrice : 0}
+            >
+              TownWater(${details?.townWaterPrice})
             </SelectItem>
-            <SelectItem value={details[0]?.pureWaterPrice}>
-              PureWater(${details[0]?.pureWaterPrice})
+            <SelectItem
+              value={details?.pureWaterPrice ? details?.pureWaterPrice : 1}
+            >
+              PureWater(${details?.pureWaterPrice})
             </SelectItem>
           </SelectGroup>
         </SelectContent>

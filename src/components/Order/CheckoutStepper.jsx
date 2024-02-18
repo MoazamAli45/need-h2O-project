@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
 
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Wrapper from "../shared/Wrapper";
+import { Button } from "../ui/button";
+import OrderContext from "@/context/OrderProvider";
+import { toast } from "sonner";
 
 const CheckoutStepper = ({ stepsConfig = [] }) => {
   const [currentStep, setCurrentStep] = useState(2);
@@ -11,6 +14,9 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
     marginRight: 0,
   });
   const stepRef = useRef([]);
+  //    data from useContext
+  const { order } = useContext(OrderContext);
+  const { profile } = order;
 
   useEffect(() => {
     setMargins({
@@ -32,6 +38,17 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
         return prevStep + 1;
       }
     });
+
+    console.log("Order Full", order);
+  };
+  const handleBack = () => {
+    setCurrentStep((prevStep) => {
+      if (prevStep === 2) {
+        return prevStep;
+      } else {
+        return prevStep - 1;
+      }
+    });
   };
 
   const calculateProgressBarWidth = () => {
@@ -39,6 +56,38 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
   };
 
   const ActiveComponent = stepsConfig[currentStep - 1]?.Component;
+
+  //   EMail Validation
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      //   RETURNING TRUE MEANS DISABLE THE BUTTON
+      return true;
+    }
+  };
+
+  //   CHECKOUT HANDLER
+  const checkoutHandler = async () => {
+    try {
+      const res = await fetch("/api/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(order),
+      });
+
+      if (!res.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const data = await res.json();
+      console.log(data?.data, "Data From Server ");
+      toast.success("Order Submitted Successfully");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <Wrapper>
@@ -82,9 +131,36 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       <ActiveComponent />
 
       {!isComplete && (
-        <button className="btn" onClick={handleNext}>
-          {currentStep === stepsConfig.length ? "Finish" : "Next"}
-        </button>
+        <div className=" flex justify-between md:pr-40 md:py-5">
+          <Button
+            className="btn"
+            onClick={handleBack}
+            disabled={currentStep === 2}
+          >
+            Back
+          </Button>
+          <Button
+            className={`${currentStep === 3 ? "hidden" : ""}`}
+            onClick={handleNext}
+            disabled={order?.price === 0}
+          >
+            {currentStep === stepsConfig.length ? "Finish" : "Next"}
+          </Button>
+
+          <Button
+            className={`${currentStep === 3 ? "block" : "hidden"}`}
+            disabled={
+              validateEmail(profile?.email) ||
+              profile?.phoneNumber.length < 3 ||
+              profile?.confirmAddress.length < 3 ||
+              profile?.firstName.length < 3 ||
+              profile?.lastName.length < 3
+            }
+            onClick={checkoutHandler}
+          >
+            Pay Now
+          </Button>
+        </div>
       )}
     </Wrapper>
   );

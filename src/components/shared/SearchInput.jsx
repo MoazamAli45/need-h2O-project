@@ -79,7 +79,7 @@ const SearchInput = () => {
 
     if (cityFound.length > 0) {
       // console.log(cityFound);
-      setDetails(cityFound);
+      setDetails(cityFound[0]);
       router.push("/book-order");
     } else {
       alert(

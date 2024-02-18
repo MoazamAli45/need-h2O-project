@@ -15,7 +15,6 @@ const Hero = () => {
             Enter an address to place order
           </p>
           <div className="flex items-center justify-center w-full mt-4 z-10">
-            {/* <InputPlacesSearch /> */}
             <SearchInput />
           </div>
         </div>
