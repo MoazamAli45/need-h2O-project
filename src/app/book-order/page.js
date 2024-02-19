@@ -39,11 +39,7 @@ const Page = () => {
   if (!order.address) {
     router.push("/");
   }
-  return (
-    <>
-      <CheckoutStepper stepsConfig={CHECKOUT_STEPS} />
-    </>
-  );
+  return <>{/* <CheckoutStepper stepsConfig={CHECKOUT_STEPS} /> */}</>;
 };
 
 export default Page;
