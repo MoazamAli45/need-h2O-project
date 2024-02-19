@@ -27,13 +27,12 @@ export const POST = async (req) => {
             unit_amount: order.price * 100,
             product_data: {
               name: "Blake's Quality Water",
+              images: [
+                `https://needh2o.co.nz/wp-content/uploads/2021/01/Blakes-Water-Web-Logo.png`,
+              ],
             },
           },
-          product_data: {
-            images: [
-              `https://needh2o.co.nz/wp-content/uploads/2021/01/Blakes-Water-Web-Logo.png`,
-            ],
-          },
+
           quantity: 1,
         },
       ],

@@ -104,6 +104,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       }
 
       const stripeData = await stripeRes.json();
+      console.log(stripeData, "Stripe Data");
       if (stripeData?.success) {
         window.location.href = stripeData.url;
       }
