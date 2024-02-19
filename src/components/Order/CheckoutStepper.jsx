@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-
+import { Loader2 } from "lucide-react";
 import { useContext, useEffect, useRef, useState } from "react";
 import Wrapper from "../shared/Wrapper";
 import { Button } from "../ui/button";
@@ -14,6 +14,10 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
     marginLeft: 0,
     marginRight: 0,
   });
+
+  //   Loading State
+  const [loading, setIsLoading] = useState(false);
+
   const stepRef = useRef([]);
   //    data from useContext
   const { order } = useContext(OrderContext);
@@ -39,8 +43,6 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
         return prevStep + 1;
       }
     });
-
-    console.log("Order Full", order);
   };
   const handleBack = () => {
     setCurrentStep((prevStep) => {
@@ -70,6 +72,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
   //   CHECKOUT HANDLER
   const checkoutHandler = async () => {
     try {
+      setIsLoading(true);
       const res = await fetch("/api/order", {
         method: "POST",
         headers: {
@@ -85,7 +88,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
 
       const data = await res.json();
       console.log(data?.data, "Data From Server ");
-      toast.success("Order Submitted Successfully");
+      // toast.success("Order Submitted Successfully");
 
       //   STRIPE CHECKOUT
 
@@ -106,6 +109,8 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       }
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -167,19 +172,29 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
             {currentStep === stepsConfig.length ? "Finish" : "Next"}
           </Button>
 
-          <Button
-            className={`${currentStep === 3 ? "block" : "hidden"}`}
-            disabled={
-              validateEmail(profile?.email) ||
-              profile?.phoneNumber.length < 3 ||
-              profile?.confirmAddress.length < 3 ||
-              profile?.firstName.length < 3 ||
-              profile?.lastName.length < 3
-            }
-            onClick={checkoutHandler}
-          >
-            Pay Now
-          </Button>
+          {loading ? (
+            <Button
+              disabled
+              className={`${currentStep === 3 ? "flex" : "hidden"}`}
+            >
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Please wait
+            </Button>
+          ) : (
+            <Button
+              className={`${currentStep === 3 ? "block" : "hidden"}  `}
+              disabled={
+                validateEmail(profile?.email) ||
+                profile?.phoneNumber.length < 3 ||
+                profile?.confirmAddress.length < 3 ||
+                profile?.firstName.length < 3 ||
+                profile?.lastName.length < 3
+              }
+              onClick={checkoutHandler}
+            >
+              Pay Now
+            </Button>
+          )}
         </div>
       )}
     </Wrapper>

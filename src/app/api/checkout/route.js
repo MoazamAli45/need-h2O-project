@@ -28,7 +28,7 @@ export const POST = async (req) => {
         {
           price_data: {
             currency: "usd",
-            unit_amount: order.price,
+            unit_amount: order.price * 100,
             product_data: {
               name: "Blake's Quality Water",
             },

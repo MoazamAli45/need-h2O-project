@@ -7,8 +7,9 @@ export const getData = async () => {
     }
     const resData = await res.json();
     const data = resData?.data;
-    console.log(data, "Data");
-    return data;
+    const submittedData = data.filter((item) => item.submitted === true);
+    console.log(submittedData, "Data");
+    return submittedData;
   } catch (error) {
     // toast.error(error);
     console.log(error);

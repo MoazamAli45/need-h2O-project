@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { formatDateTime } from "@/lib/formatDateTime";
 import { getData } from "@/lib/getData";
 import React, { useEffect } from "react";
 import { toast } from "sonner";
@@ -36,6 +37,7 @@ function CustomDataTable() {
     }
   }, []);
 
+  console.log(loading, "Loading");
   if (loading) {
     return (
       <div class="animate-pulse">
@@ -68,7 +70,7 @@ function CustomDataTable() {
         {data?.map((item, i) => (
           <TableRow key={item._id}>
             <TableCell className="font-medium">{i + 1}</TableCell>
-            <TableCell>{item.date.substring(0, 10)}</TableCell>
+            <TableCell>{formatDateTime(item.date)}</TableCell>
             <TableCell>
               {item?.profile.firstName + item?.profile.lastName}
             </TableCell>
@@ -81,7 +83,7 @@ function CustomDataTable() {
                 ? "Pure Water"
                 : "Town Water"}
             </TableCell>
-            <TableCell>${item.price}.00</TableCell>
+            <TableCell>${item.price.toFixed(2)}</TableCell>
           </TableRow>
         ))}
       </TableBody>
