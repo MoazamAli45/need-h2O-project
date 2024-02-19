@@ -6,7 +6,7 @@ import { CiTwitter } from "react-icons/ci";
 import { RxInstagramLogo } from "react-icons/rx";
 
 const Footer = () => (
-  <footer className="mb-2 md:mb-6">
+  <footer className="my-4 md:my-8">
     <Wrapper>
       <div className="flex justify-around">
         <Link
