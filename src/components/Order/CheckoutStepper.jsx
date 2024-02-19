@@ -104,7 +104,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       console.log("window", window);
       if (typeof window !== "undefined")
         if (stripeData?.success) {
-          // window.location.href = stripeData.url;
+          window.location.href = stripeData.url;
           console.log(stripeData.url);
         }
     } catch (error) {
