@@ -18,7 +18,7 @@ export const POST = async (req) => {
       success_url: `${process.env.CLIENT_URL}/checkout-success`,
       cancel_url: `${process.env.CLIENT_URL}/`,
       customer_email: order.profile.email,
-      client_reference_id: order._id,
+      client_reference_id: body,
       mode: "payment",
       line_items: [
         {

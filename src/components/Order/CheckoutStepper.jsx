@@ -5,7 +5,15 @@ import Wrapper from "../shared/Wrapper";
 import { Button } from "../ui/button";
 import OrderContext from "@/context/OrderProvider";
 import { toast } from "sonner";
-import axios from "axios";
+
+const initialState = {
+  address: "",
+  profile: "",
+  details: "",
+  date: "",
+  price: 0,
+  submitted: false,
+};
 
 const CheckoutStepper = ({ stepsConfig = [] }) => {
   const [currentStep, setCurrentStep] = useState(2);
@@ -20,7 +28,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
 
   const stepRef = useRef([]);
   //    data from useContext
-  const { order } = useContext(OrderContext);
+  const { order, setOrder } = useContext(OrderContext);
   const { profile } = order;
 
   useEffect(() => {
@@ -81,14 +89,14 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
         body: JSON.stringify(order),
       });
 
-      console.log(res, "Res");
       if (!res.ok) {
         throw new Error("Something went wrong!");
       }
 
       const data = await res.json();
-      console.log(data?.data, "Data From Server ");
-
+      //
+      setOrder(initialState);
+      console.log(order, data, "Order Data");
       //   STRIPE CHECKOUT
 
       const stripeRes = await fetch("/api/checkout", {
