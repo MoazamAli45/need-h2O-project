@@ -29,13 +29,21 @@ export const POST = async (req) => {
   if (event.type === "checkout.session.completed") {
     console.log("webhook-checkout");
     await connect();
-    const body = event;
+    const body = event.data.object.client_reference_id;
     console.log(body, "Body");
 
-    // const order = await Order.findById(body);
-    // console.log(order, "Order");
-    // order.submitted = true;
-    // await order.save();
+    if (!body)
+      return new NextResponse(
+        JSON.stringify({
+          status: 400,
+          message: "Invalid client reference Id",
+        })
+      );
+
+    const order = await Order.findById(body);
+    console.log(order, "Order");
+    order.submitted = true;
+    await order.save();
 
     return new NextResponse(
       JSON.stringify({
