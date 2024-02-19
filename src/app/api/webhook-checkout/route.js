@@ -6,6 +6,7 @@ import Stripe from "stripe";
 export const POST = async (req) => {
   const body = await req.text();
 
+  console.log("Web Hook Checkout Data Coming");
   const sign = req.headers.get("Stripe-Signature");
   if (!sign) {
     return new NextResponse(

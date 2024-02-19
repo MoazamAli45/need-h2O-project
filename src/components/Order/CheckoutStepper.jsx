@@ -88,7 +88,6 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
 
       const data = await res.json();
       console.log(data?.data, "Data From Server ");
-      // toast.success("Order Submitted Successfully");
 
       //   STRIPE CHECKOUT
 
