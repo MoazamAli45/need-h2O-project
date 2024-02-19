@@ -1,7 +1,12 @@
 export function formatDateTime(dateTimeString) {
-  // Create a new Date object
-  const date = new Date(dateTimeString);
+  const timeZoneOffset = 7 * 60;
 
+  const databaseDate = new Date(dateTimeString);
+
+  const date = new Date(databaseDate.getTime() + timeZoneOffset * 60000);
+  // Create a new Date object
+  //   const date = new Date(dateTimeString);
+  console.log(date, "date");
   // Get year, month, day, hours, and minutes
   const year = date.getFullYear();
   const month = date.getMonth() + 1; // Months are zero-based
@@ -10,8 +15,8 @@ export function formatDateTime(dateTimeString) {
   const minutes = date.getMinutes();
 
   // Convert hours to 12-hour format
-  const formattedHours = hours % 12 || 12;
-
+  const formattedHours = hours % 12;
+  console.log(formattedHours, "formattedHours");
   // Determine AM or PM
   const period = hours < 12 ? "AM" : "PM";
 

@@ -5,8 +5,6 @@ import Wrapper from "../shared/Wrapper";
 import { Button } from "../ui/button";
 import OrderContext from "@/context/OrderProvider";
 import { toast } from "sonner";
-import { getData } from "@/lib/getData";
-import { set } from "mongoose";
 
 const initialState = {
   address: "",
@@ -46,60 +44,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
     return <></>;
   }
 
-  const validateTimeHandler = async () => {
-    try {
-      const data = await getData();
-
-      // Assuming the order date is stored in the state
-      const { date: orderDate } = order;
-
-      // Convert orderDate to a JavaScript Date object
-      const orderDateTime = new Date(orderDate);
-      let isValid = false;
-      // Check if orderDate is not equal to any date in the data array
-      for (const item of data) {
-        const dbDateTime = new Date(item.date);
-
-        // Check if orderDate is not exactly equal to dbDateTime
-
-        // and it's not one hour before dbDateTime
-        if (
-          !(
-            orderDateTime.getTime() === dbDateTime.getTime() ||
-            orderDateTime.getTime() ===
-              dbDateTime.getTime() - 1 * 60 * 60 * 1000 ||
-            orderDateTime.getTime() ===
-              dbDateTime.getTime() + 1 * 60 * 60 * 1000
-          )
-        ) {
-          console.log(orderDateTime, dbDateTime, "Time is valid");
-          isValid = true;
-        }
-      }
-
-      if (isValid) {
-        console.log("Time is valid");
-        // Time is valid
-        setIsValidTime(true);
-      } else {
-        // Time is not valid
-        setIsValidTime(false);
-        // Notify the user about the invalid time if needed
-        toast.error("Order time is invalid. Please choose a different time.");
-      }
-    } catch (error) {
-      console.error("Error occurred while validating time:", error);
-      // Handle error
-      // You might want to notify the user or handle the error in some way
-    }
-  };
-
   const handleNext = () => {
-    //  check for second step
-    if (currentStep === 2) {
-      validateTimeHandler();
-    }
-
     setCurrentStep((prevStep) => {
       if (prevStep === stepsConfig.length) {
         setIsComplete(true);
