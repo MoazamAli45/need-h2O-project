@@ -5,7 +5,6 @@ export function formatDateTime(dateTimeString) {
     timeZone: "UTC", // Set the time zone to UTC or the appropriate time zone
     // other options as needed
   };
-  console.log(date.toLocaleString("en-US", options)); // Adjust locale as needed
 
   return date.toLocaleString("en-NZ", options);
 }
