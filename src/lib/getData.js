@@ -11,7 +11,6 @@ export const getData = async () => {
     console.log(submittedData, "Data");
     return submittedData;
   } catch (error) {
-    // toast.error(error);
     console.log(error);
   }
 };
