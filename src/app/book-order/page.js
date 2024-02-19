@@ -39,7 +39,7 @@ const Page = () => {
   console.log(order);
 
   if (!order.address) {
-    // router.push("/");
+    router.push("/");
   }
   return (
     <>

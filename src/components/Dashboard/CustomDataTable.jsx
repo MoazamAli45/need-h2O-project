@@ -16,25 +16,21 @@ import { toast } from "sonner";
 function CustomDataTable() {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-  const fetchdata = async () => {
-    try {
-      const orders = await getData();
-      setData(orders);
-    } catch (error) {
-      console.log(error);
-      toast.error(error);
-    }
-  };
 
   useEffect(() => {
-    try {
-      setLoading(true);
-      fetchdata();
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
+    const fetchdata = async () => {
+      try {
+        setLoading(true);
+        const orders = await getData();
+        setData(orders);
+      } catch (error) {
+        console.log(error);
+        toast.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchdata();
   }, []);
 
   console.log(loading, "Loading");
@@ -72,7 +68,7 @@ function CustomDataTable() {
             <TableCell className="font-medium">{i + 1}</TableCell>
             <TableCell>{formatDateTime(item.date)}</TableCell>
             <TableCell>
-              {item?.profile.firstName + item?.profile.lastName}
+              {item?.profile.firstName + " " + item?.profile.lastName}
             </TableCell>
             <TableCell>{item?.profile.email}</TableCell>
             <TableCell>{item?.address}</TableCell>
