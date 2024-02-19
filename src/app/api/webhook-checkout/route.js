@@ -29,7 +29,7 @@ export const POST = async (req) => {
   if (event.type === "checkout.session.completed") {
     console.log("webhook-checkout");
     await connect();
-    const body = event.data.object.client_reference_id;
+    const body = event.data;
     console.log(body, "Body");
 
     const order = await Order.findById(body);
