@@ -1,7 +1,7 @@
 export function formatDateTime(dateTimeString) {
   const date = new Date(dateTimeString);
   // Create a new Date object
-  //   console.log(date, "date");
+  console.log(date, "date");
   // Get year, month, day, hours, and minutes
   const year = date.getFullYear();
   const month = date.getMonth() + 1; // Months are zero-based

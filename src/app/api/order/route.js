@@ -9,9 +9,9 @@ export const POST = async (req) => {
       const body = await req.json();
       // Create a new order document
       const order = new Order(body);
-      const dateUtc = new Date(body?.date);
-      const date = dateUtc.toUTCString();
-      order.date = date;
+      // const dateUtc = new Date(body?.date);
+      // const date = dateUtc.toUTCString();
+      // order.date = date;
 
       // Save the order document to the database
       await order.save();
