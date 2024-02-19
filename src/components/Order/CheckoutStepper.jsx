@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable react/prop-types */
 import { Loader2 } from "lucide-react";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -100,9 +101,11 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       }
 
       const stripeData = await stripeRes.json();
-      if (stripeData?.success) {
-        window.location.href = stripeData.url;
-      }
+      console.log("window", window);
+      if (typeof window !== "undefined")
+        if (stripeData?.success) {
+          window.location.href = stripeData.url;
+        }
     } catch (error) {
       toast.error(error.message);
     } finally {
