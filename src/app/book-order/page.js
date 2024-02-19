@@ -1,7 +1,7 @@
 "use client";
 import CheckoutStepper from "@/components/Order/CheckoutStepper";
 import OrderContext from "@/context/OrderProvider";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { MdLocationPin } from "react-icons/md";
 import { MdWaterDrop } from "react-icons/md";
@@ -33,13 +33,17 @@ const CHECKOUT_STEPS = [
 ];
 
 const Page = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const { order } = useContext(OrderContext);
 
   if (!order.address) {
-    router.push("/");
+    // router.push("/");
   }
-  return <>{/* <CheckoutStepper stepsConfig={CHECKOUT_STEPS} /> */}</>;
+  return (
+    <>
+      <CheckoutStepper stepsConfig={CHECKOUT_STEPS} />
+    </>
+  );
 };
 
 export default Page;
