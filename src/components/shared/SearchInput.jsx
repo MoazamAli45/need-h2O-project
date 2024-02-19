@@ -57,14 +57,13 @@ const SearchInput = () => {
 
     updateQuery(query);
     setAddress(address);
-    console.log({ query }, "Query");
+    // console.log({ query }, "Query");
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
     let lastSubstring = "";
     const commaIndex = query.lastIndexOf(",");
-    console.log(commaIndex, "Comma Index");
     if (commaIndex !== -1) {
       lastSubstring = query.substring(commaIndex + 2);
     } else if (query === "Dairy Flat") {

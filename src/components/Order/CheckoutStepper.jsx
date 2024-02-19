@@ -6,15 +6,6 @@ import { Button } from "../ui/button";
 import OrderContext from "@/context/OrderProvider";
 import { toast } from "sonner";
 
-const initialState = {
-  address: "",
-  profile: "",
-  details: "",
-  date: "",
-  price: 0,
-  submitted: false,
-};
-
 const CheckoutStepper = ({ stepsConfig = [] }) => {
   const [currentStep, setCurrentStep] = useState(2);
   const [isComplete, setIsComplete] = useState(false);
@@ -26,11 +17,9 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
   //   Loading State
   const [loading, setIsLoading] = useState(false);
 
-  const [isValidTime, setIsValidTime] = useState(false);
-
   const stepRef = useRef([]);
   //    data from useContext
-  const { order, setOrder } = useContext(OrderContext);
+  const { order } = useContext(OrderContext);
   const { profile } = order;
 
   useEffect(() => {
@@ -96,9 +85,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       }
 
       const data = await res.json();
-      //
-      setOrder(initialState);
-      console.log(order, data, "Order Data");
+
       //   STRIPE CHECKOUT
 
       const stripeRes = await fetch("/api/checkout", {
@@ -113,7 +100,6 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       }
 
       const stripeData = await stripeRes.json();
-      console.log(stripeData, "Stripe Data");
       if (stripeData?.success) {
         window.location.href = stripeData.url;
       }

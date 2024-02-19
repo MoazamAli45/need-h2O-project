@@ -23,7 +23,6 @@ function CustomSelectBox() {
     setSelectedValue(newValue);
   };
   // console.log("Detailes", details);
-  console.log(selectedValue);
 
   React.useEffect(() => {
     if (selectedValue === details?.townWaterPrice) {

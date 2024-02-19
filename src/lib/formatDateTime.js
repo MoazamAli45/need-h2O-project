@@ -1,12 +1,7 @@
 export function formatDateTime(dateTimeString) {
-  const timeZoneOffset = 7 * 60;
-
-  const databaseDate = new Date(dateTimeString);
-
-  const date = new Date(databaseDate.getTime() + timeZoneOffset * 60000);
+  const date = new Date(dateTimeString);
   // Create a new Date object
-  //   const date = new Date(dateTimeString);
-  console.log(date, "date");
+  //   console.log(date, "date");
   // Get year, month, day, hours, and minutes
   const year = date.getFullYear();
   const month = date.getMonth() + 1; // Months are zero-based

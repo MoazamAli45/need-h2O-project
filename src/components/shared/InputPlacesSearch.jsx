@@ -25,12 +25,11 @@ const InputPlacesSearch = () => {
 
     const city = value.split(",");
     const cityName = city[city.length - 2].trim();
-    console.log("City Name", cityName);
     const cityFound = cityWaterPrices.filter((item) =>
       cityName.includes(item.city)
     );
 
-    console.log(cityFound);
+    // console.log(cityFound);
   };
   return (
     <div className="w-[80%]  sm:w-1/2">

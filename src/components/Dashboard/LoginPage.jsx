@@ -15,7 +15,6 @@ export default function LoginPage({ authenticateHandler }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(email, password);
     if (email === user.email && password === user.password) {
       authenticateHandler();
     } else {

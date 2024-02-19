@@ -33,7 +33,6 @@ function CustomDataTable() {
     fetchdata();
   }, []);
 
-  console.log(loading, "Loading");
   if (loading) {
     return (
       <div class="animate-pulse">

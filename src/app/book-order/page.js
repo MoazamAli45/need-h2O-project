@@ -36,8 +36,6 @@ const Page = () => {
   const router = useRouter();
   const { order } = useContext(OrderContext);
 
-  console.log(order);
-
   if (!order.address) {
     router.push("/");
   }

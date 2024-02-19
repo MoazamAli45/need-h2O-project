@@ -10,7 +10,6 @@ export const POST = async (req) => {
     await connect();
 
     const body = await req.json();
-    console.log(body, "Body");
     const order = await Order.findById(body);
 
     const session = await stripe.checkout.sessions.create({

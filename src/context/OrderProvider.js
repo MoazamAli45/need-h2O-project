@@ -53,7 +53,6 @@ export const OrderProvider = ({ children }) => {
     setPrice,
     setSubmitted,
     setDate,
-    setOrder,
   };
 
   // Render the OrderProvider component with the orderContextValue
