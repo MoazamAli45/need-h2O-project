@@ -7,8 +7,7 @@ export const getData = async () => {
     }
     const resData = await res.json();
     const data = resData?.data;
-    const submittedData = data.filter((item) => item.submitted === true);
-    return submittedData;
+    return data;
   } catch (error) {
     console.log(error);
   }

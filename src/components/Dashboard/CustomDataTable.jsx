@@ -46,6 +46,8 @@ function CustomDataTable() {
     );
   }
 
+  console.log(data, "Data");
+
   return (
     <Table className="mb-4">
       <TableHeader>
@@ -54,8 +56,8 @@ function CustomDataTable() {
           <TableHead>Date</TableHead>
           <TableHead>Name</TableHead>
           <TableHead>Email Address</TableHead>
-          <TableHead> Address</TableHead>
-          <TableHead>Confirm Address</TableHead>
+          <TableHead>Address</TableHead>
+          <TableHead>Tank Location</TableHead>
           <TableHead>Phone Number</TableHead>
           <TableHead>Service</TableHead>
           <TableHead>Price</TableHead>
@@ -65,20 +67,20 @@ function CustomDataTable() {
         {data?.map((item, i) => (
           <TableRow key={item._id}>
             <TableCell className="font-medium">{i + 1}</TableCell>
-            <TableCell>{formatDateTime(item.date)}</TableCell>
+            <TableCell>{item.date}</TableCell>
             <TableCell>
               {item?.profile.firstName + " " + item?.profile.lastName}
             </TableCell>
             <TableCell>{item?.profile.email}</TableCell>
             <TableCell>{item?.address}</TableCell>
-            <TableCell>{item?.profile.confirmAddress}</TableCell>
+            <TableCell>{item?.profile.tankLocation}</TableCell>
             <TableCell>{item?.profile.phoneNumber}</TableCell>
             <TableCell>
               {item?.details.pureWaterPrice === item.price
                 ? "Pure Water"
                 : "Town Water"}
             </TableCell>
-            <TableCell>${item.price.toFixed(2)}</TableCell>
+            <TableCell>${item.totalPrice.toFixed(2)}</TableCell>
           </TableRow>
         ))}
       </TableBody>
@@ -86,7 +88,7 @@ function CustomDataTable() {
         <TableRow>
           <TableCell colSpan={8}>Total</TableCell>
           <TableCell>
-            ${data?.reduce((acc, curr) => acc + curr.price, 0)}.00
+            ${data?.reduce((acc, curr) => acc + curr.totalPrice, 0)}.00
           </TableCell>
         </TableRow>
       </TableFooter>

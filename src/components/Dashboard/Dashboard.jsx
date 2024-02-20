@@ -19,7 +19,7 @@ const Dashboard = () => {
     fetchdata();
   }, []);
 
-  const totalEarned = data?.reduce((acc, item) => acc + item.price, 0);
+  const totalEarned = data?.reduce((acc, item) => acc + item.totalPrice, 0);
   const totalOrders = data?.length;
 
   return (

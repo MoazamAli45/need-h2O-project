@@ -29,8 +29,8 @@ export const POST = async (req) => {
   if (event.type === "checkout.session.completed") {
     await connect();
 
-    const body = event.data.object.metadata.order;
-    console.log(JSON.parse(body), "Body 🔥");
+    const body = JSON.parse(event.data.object.metadata.order);
+    console.log(body, "Body 🔥");
 
     if (!body)
       return new NextResponse(
@@ -40,7 +40,10 @@ export const POST = async (req) => {
         })
       );
 
-    const order = new Order(JSON.parse(body));
+    const order = new Order(body);
+    const utcDate = order.date.toISOString();
+    console.log("UTC date", utcDate);
+    order.date = utcDate;
 
     // Save the order document to the database
     await order.save();
