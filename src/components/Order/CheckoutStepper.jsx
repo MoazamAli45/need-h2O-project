@@ -73,19 +73,19 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
   const checkoutHandler = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch("/api/order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(order),
-      });
+      // const res = await fetch("/api/order", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(order),
+      // });
 
-      if (!res.ok) {
-        throw new Error("Something went wrong!");
-      }
+      // if (!res.ok) {
+      //   throw new Error("Something went wrong!");
+      // }
 
-      const data = await res.json();
+      // const data = await res.json();
 
       //   STRIPE CHECKOUT
 
@@ -94,7 +94,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data?.data._id),
+        body: JSON.stringify(order),
       });
       if (!stripeRes.ok) {
         throw new Error("Something went wrong!");
@@ -167,7 +167,9 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
           <Button
             className={`${currentStep === 3 ? "hidden" : ""}`}
             onClick={handleNext}
-            disabled={order?.price === 0}
+            disabled={
+              order?.price === 0 || order?.totalPrice === 0 || !order?.date
+            }
           >
             {currentStep === stepsConfig.length ? "Finish" : "Next"}
           </Button>
@@ -186,9 +188,11 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
               disabled={
                 validateEmail(profile?.email) ||
                 profile?.phoneNumber.length < 3 ||
-                profile?.confirmAddress.length < 3 ||
+                profile?.tankLocation.length < 3 ||
                 profile?.firstName.length < 3 ||
-                profile?.lastName.length < 3
+                profile?.lastName.length < 3 ||
+                profile?.distanceFromTank == "" ||
+                profile?.driveaway.length === 0
               }
               onClick={checkoutHandler}
             >

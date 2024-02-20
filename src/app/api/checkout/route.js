@@ -2,28 +2,26 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-import Order from "@/model/Order";
-import connect from "@/utils/db";
+
 export const POST = async (req) => {
   try {
-    // console.log("checkout");
-    await connect();
+    const order = await req.json();
 
-    const body = await req.json();
-    const order = await Order.findById(body);
-
+    console.log(order, "Order Coming in checkout route");
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       success_url: `${process.env.CLIENT_URL}/checkout-success`,
       cancel_url: `${process.env.CLIENT_URL}/`,
       customer_email: order.profile.email,
-      client_reference_id: body,
       mode: "payment",
+      metadata: {
+        order: JSON.stringify(order),
+      },
       line_items: [
         {
           price_data: {
             currency: "usd",
-            unit_amount: order.price * 100,
+            unit_amount: order.totalPrice * 100,
             product_data: {
               name: "Blake's Quality Water",
               images: [

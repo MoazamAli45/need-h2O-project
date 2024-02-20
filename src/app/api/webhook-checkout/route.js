@@ -28,7 +28,8 @@ export const POST = async (req) => {
   }
   if (event.type === "checkout.session.completed") {
     await connect();
-    const body = event.data.object.client_reference_id;
+    console.log(event, "Event");
+    const body = event;
     console.log(body, "Body 🔥");
 
     if (!body)
@@ -39,9 +40,9 @@ export const POST = async (req) => {
         })
       );
 
-    const order = await Order.findById(body);
-    order, "Order";
-    order.submitted = true;
+    const order = new Order(body);
+
+    // Save the order document to the database
     await order.save();
 
     return new NextResponse(

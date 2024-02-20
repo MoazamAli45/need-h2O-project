@@ -12,7 +12,11 @@ const orderSchema = new mongoose.Schema(
         lastName: String,
         email: String,
         phoneNumber: String,
-        confirmAddress: String,
+        distanceFromTank: String,
+        tankLocation: String,
+        deliveryTime: String,
+        comments: String,
+        driveaway: [String],
       },
       required: true,
     },
@@ -38,6 +42,11 @@ const orderSchema = new mongoose.Schema(
       type: Boolean,
       required: true,
       default: false, // Assuming orders are initially not submitted
+    },
+    totalPrice: {
+      type: Number,
+      required: true,
+      default: 0,
     },
   },
   {

@@ -38,7 +38,7 @@ const Page = () => {
   // console.log(router, "ROuter");
   useEffect(() => {
     if (!order.address) {
-      router.push("/"); // Redirect to '/' if no order address
+      // router.push("/"); // Redirect to '/' if no order address
     }
   }, [order.address, router]);
 

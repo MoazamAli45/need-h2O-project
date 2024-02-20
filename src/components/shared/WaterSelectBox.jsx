@@ -13,7 +13,7 @@ import {
 import { Label } from "../ui/label";
 import OrderContext from "@/context/OrderProvider";
 
-function CustomSelectBox() {
+function WaterSelectBox() {
   const { order, setPrice } = React.useContext(OrderContext);
   const { details } = order;
 
@@ -34,10 +34,10 @@ function CustomSelectBox() {
   }, [selectedValue]);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 w-[80%] mx-auto ">
       <Label> Service:</Label>
       <Select value={selectedValue} onValueChange={handleChange}>
-        <SelectTrigger className="w-full md:w-[80%]">
+        <SelectTrigger className="w-full">
           <SelectValue placeholder="Select a Service" value={selectedValue} />
         </SelectTrigger>
         <SelectContent>
@@ -60,4 +60,4 @@ function CustomSelectBox() {
   );
 }
 
-export default CustomSelectBox;
+export default WaterSelectBox;
