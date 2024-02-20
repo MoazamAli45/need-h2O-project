@@ -96,6 +96,8 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
         },
         body: JSON.stringify(order),
       });
+
+      console.log(stripeRes, "res");
       if (!stripeRes.ok) {
         throw new Error("Something went wrong!");
       }
