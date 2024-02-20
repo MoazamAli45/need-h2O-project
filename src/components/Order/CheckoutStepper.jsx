@@ -6,6 +6,7 @@ import Wrapper from "../shared/Wrapper";
 import { Button } from "../ui/button";
 import OrderContext from "@/context/OrderProvider";
 import { toast } from "sonner";
+import axios from "axios";
 
 const CheckoutStepper = ({ stepsConfig = [] }) => {
   const [currentStep, setCurrentStep] = useState(2);
@@ -73,37 +74,20 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
   const checkoutHandler = async () => {
     try {
       setIsLoading(true);
-      // const res = await fetch("/api/order", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(order),
-      // });
-
-      // if (!res.ok) {
-      //   throw new Error("Something went wrong!");
-      // }
-
-      // const data = await res.json();
 
       //   STRIPE CHECKOUT
 
-      const stripeRes = await fetch("/api/checkout", {
-        method: "POST",
+      const response = await axios.post("/api/checkout", order, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(order),
       });
+      console.log(response, "response");
 
-      console.log(stripeRes, "res");
-      if (!stripeRes.ok) {
-        throw new Error("Something went wrong!");
+      if (!response.data.success) {
+        throw new Error(response.data.error || "Something went wrong!");
       }
-
-      const stripeData = await stripeRes.json();
-      console.log("window", window);
+      const stripeData = response?.data;
       if (typeof window !== "undefined")
         if (stripeData?.success) {
           window.location.href = stripeData.url;

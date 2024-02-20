@@ -38,11 +38,6 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    submitted: {
-      type: Boolean,
-      required: true,
-      default: false, // Assuming orders are initially not submitted
-    },
     totalPrice: {
       type: Number,
       required: true,
