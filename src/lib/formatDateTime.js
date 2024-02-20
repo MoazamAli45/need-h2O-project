@@ -6,5 +6,5 @@ export function formatDateTime(dateTimeString) {
     // other options as needed
   };
 
-  return date.toLocaleString();
+  return date.toLocaleString("en-NZ", options);
 }

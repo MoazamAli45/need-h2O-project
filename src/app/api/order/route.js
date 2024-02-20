@@ -7,6 +7,7 @@ export const POST = async (req) => {
     try {
       await connect();
       const body = await req.json();
+       body.date = new Date(body.date).toUTCString();
       // Create a new order document
       const order = new Order(body);
 
