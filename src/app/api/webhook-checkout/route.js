@@ -28,8 +28,9 @@ export const POST = async (req) => {
   }
   if (event.type === "checkout.session.completed") {
     await connect();
-    console.log(event, "Event");
-    const body = JSON.parse(event.data.object.metadata);
+    console.log(event.data, "Event 🔥");
+    console.log(event.data.object, "Event Object 🔥");
+    const body = event.data.object.metadata.order;
     console.log(body, "Body 🔥");
 
     if (!body)
