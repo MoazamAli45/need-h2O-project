@@ -28,10 +28,9 @@ export const POST = async (req) => {
   }
   if (event.type === "checkout.session.completed") {
     await connect();
-    console.log(event.data, "Event 🔥");
-    console.log(event.data.object, "Event Object 🔥");
+
     const body = event.data.object.metadata.order;
-    console.log(body, "Body 🔥");
+    console.log(JSON.parse(body), "Body 🔥");
 
     if (!body)
       return new NextResponse(
@@ -41,7 +40,7 @@ export const POST = async (req) => {
         })
       );
 
-    const order = new Order(body);
+    const order = new Order(JSON.parse(body));
 
     // Save the order document to the database
     await order.save();
