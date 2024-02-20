@@ -9,8 +9,8 @@ function CustomDate() {
   const [dateValue, setDateValue] = React.useState(new Date());
 
   const { setDate } = React.useContext(OrderContext);
-
-  console.log(dateValue);
+  console.log(dateValue, "Original");
+  console.log(dateValue.toISOString());
   React.useEffect(() => {
     setDate(dateValue);
     // eslint-disable-next-line react-hooks/exhaustive-deps

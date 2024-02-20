@@ -67,7 +67,7 @@ function CustomDataTable() {
         {data?.map((item, i) => (
           <TableRow key={item._id}>
             <TableCell className="font-medium">{i + 1}</TableCell>
-            <TableCell>{item.date}</TableCell>
+            <TableCell>{formatDateTime(item.date)}</TableCell>
             <TableCell>
               {item?.profile.firstName + " " + item?.profile.lastName}
             </TableCell>
