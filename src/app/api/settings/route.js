@@ -37,7 +37,8 @@ export const PUT = async (req) => {
   if (req.method === "PUT") {
     try {
       await connect();
-      const maxAllowedOrders = req.json(); // Assuming maxAllowedOrders is sent in the request body
+      const { maxAllowedOrders } = await req.json(); // Assuming maxAllowedOrders is sent in the request body
+      console.log(maxAllowedOrders, "maxAllowedOrders 😊");
       const settings = await Settings.findOneAndUpdate(
         {},
         { maxAllowedOrders },

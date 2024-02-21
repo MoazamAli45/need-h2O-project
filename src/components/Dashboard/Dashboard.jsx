@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import CustomDataTable from "./CustomDataTable";
 import { getData } from "@/lib/getData";
 import { toast } from "sonner";
+import UpdateMaximumOrders from "./UpdateMaximumOrders";
 
 const Dashboard = () => {
   const [data, setData] = React.useState([]);
@@ -30,7 +31,7 @@ const Dashboard = () => {
             <div className="flex md:flex-row flex-col p-4 space-x-4 space-y-2 max-w-8xl justify-around  w-full h-auto lg:h-50 i8ms-center ">
               <div className=" w-[90%] md:w-1/2 bg-gray-200 py-8 rounded-2xl flex items-center justify-center ml-4 flex-1">
                 <div className="flex-col  items-center px-0 md:px-6">
-                  <div className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400  bg-clip-text text-transparent">
+                  <div className="text-3xl sm:text-5xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400  bg-clip-text text-transparent">
                     ${totalEarned.toFixed(2)}
                   </div>
                   <div className="text-md mt-6 font-bold text-gray-800">
@@ -41,9 +42,9 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <div className=" w-[90%] md:w-1/2 bg-gray-200 py-4 rounded-2xl flex items-center justify-center ml-4 flex-1">
+              <div className=" w-[90%] md:w-1/2 bg-gray-200 py-8 rounded-2xl flex items-center justify-center ml-4 flex-1">
                 <div className="flex-col  items-center px-0 md:px-6">
-                  <div className="text-5xl font-bold bg-gradient-to-l from-fuchsia-500 to-orange-500  bg-clip-text text-transparent">
+                  <div className="text-3xl sm:text-5xl  font-bold bg-gradient-to-l from-fuchsia-500 to-orange-500  bg-clip-text text-transparent">
                     {totalOrders}
                   </div>
                   <div className="text-md mt-6 font-bold text-gray-800">
@@ -57,6 +58,9 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="flex  justify-end my-4 max-w-7xl px-6 mx-auto  w-full">
+        <UpdateMaximumOrders />
       </div>
       <div className="max-w-7xl md:px-6 mx-auto">
         <CustomDataTable />
