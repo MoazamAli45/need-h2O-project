@@ -13,14 +13,16 @@ const Navigation = () => {
   const toggleHandler = () => {
     setIsDrawerOpen((prev) => !prev);
   };
+
+  console.log(pathname, "Pathname");
   return (
     <div>
       <Wrapper styles="px-0 sm:px-8 md:px-14">
         <div className="flex justify-between items-center py-4 ">
           <Image
-            src={"/home/logo.svg"}
+            src={"/home/logo.jpg"}
             alt="logo"
-            width={150}
+            width={180}
             height={70}
             priority
           />
@@ -28,7 +30,7 @@ const Navigation = () => {
             <Link
               href="/"
               className={`text-[16px]  ${
-                pathname === "/" ? "font-bold" : "font-medium "
+                pathname === "/" ? "font-bold text-bluePrimary" : "font-medium "
               }`}
             >
               Home
@@ -36,18 +38,22 @@ const Navigation = () => {
             <Link
               href="/about"
               className={`text-[16px]  ${
-                pathname === "/about" ? "font-bold" : "font-medium "
+                pathname === "/about"
+                  ? "font-bold text-bluePrimary"
+                  : "font-medium "
               }`}
             >
               About Us
             </Link>
             <Link
-              href={"/services"}
-              className={`text-[16px] font-medium ${
-                pathname === "/services" ? "font-bold" : "font-medium "
+              href={"/sources"}
+              className={`text-[16px]  ${
+                pathname === "/sources"
+                  ? "font-bold text-bluePrimary "
+                  : "font-medium "
               }`}
             >
-              Water Services
+              Water Sources
             </Link>
           </div>
           <div className="sm:hidden">
@@ -76,7 +82,9 @@ const Navigation = () => {
               <Link
                 href="/"
                 className={`block py-2 px-4 text-[14px] ${
-                  pathname === "/" ? "font-bold" : "font-medium "
+                  pathname === "/"
+                    ? "font-bold text-bluePrimary"
+                    : "font-medium "
                 }`}
               >
                 Home
@@ -86,7 +94,9 @@ const Navigation = () => {
               <Link
                 href="/about"
                 className={`block py-2 px-4 text-[14px] ${
-                  pathname === "/about" ? "font-bold" : "font-medium "
+                  pathname === "/about"
+                    ? "font-bold text-bluePrimary"
+                    : "font-medium "
                 }`}
               >
                 About Us
@@ -94,12 +104,14 @@ const Navigation = () => {
             </li>
             <li>
               <Link
-                href="/services"
+                href="/sources"
                 className={`block py-2 px-4 text-[14px] ${
-                  pathname === "/services" ? "font-bold" : "font-medium "
+                  pathname === "/sources"
+                    ? "font-bold text-bluePrimary"
+                    : "font-medium "
                 }`}
               >
-                Water Services
+                Water Sources
               </Link>
             </li>
           </ul>

@@ -1,10 +1,13 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { PrimaryButton } from "../shared/Button";
 import Wrapper from "../shared/Wrapper";
-import image1 from "../../../public/home/service-1.png";
-import image2 from "../../../public/home/service-2.png";
-import image3 from "../../../public/home/service-3.png";
+import image1 from "../../../public/home/tank1.jpg";
+import image2 from "../../../public/home/tank3.jpg";
+import image3 from "../../../public/home/tank2.jpg";
+import { useRouter } from "next/navigation";
+
 const services = [
   {
     id: 1,
@@ -24,18 +27,19 @@ const services = [
 ];
 
 const Services = () => {
+  const router = useRouter();
   return (
     <section className="my-12">
       <Wrapper>
         <div className="flex lg:flex-row flex-col gap-6 ">
           <div className="relative max-w-full w-full  lg:w-[500px]  lg:flex-1  h-[350px]">
             <Image
-              src={"/home/service.png"}
+              src={"/about/about.jpg"}
               alt="service"
               priority
               fill
               sizes="100% "
-              className="w-full h-full object-cover rounded-lg"
+              className="w-full h-full object-cover object-left rounded-lg"
             />
           </div>
           <div className="flex flex-col gap-4 flex-1">
@@ -91,7 +95,9 @@ const Services = () => {
             </p>
           </div>
           <div className="flex space-x-4">
-            <PrimaryButton>Learn More</PrimaryButton>
+            <PrimaryButton onClick={() => router.push("/about")}>
+              Learn More
+            </PrimaryButton>
             <button className="font-bold">Contact Us</button>
           </div>
         </div>

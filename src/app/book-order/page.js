@@ -43,9 +43,9 @@ const Page = () => {
   }, [order.address, router]);
 
   return (
-    <>
+    <div>
       <CheckoutStepper stepsConfig={CHECKOUT_STEPS} />
-    </>
+    </div>
   );
 };
 
