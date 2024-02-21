@@ -30,9 +30,8 @@ const orderSchema = new mongoose.Schema(
       required: true,
     },
     date: {
-      type: Date,
+      type: String,
       required: true,
-      default: Date.now, // Set default value to current date/time
     },
     price: {
       type: Number,
