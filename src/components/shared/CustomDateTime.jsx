@@ -38,6 +38,7 @@ import OrderContext from "@/context/OrderProvider";
 function CustomDate() {
   const [dateValue, setDateValue] = React.useState(new Date());
   const { setDate } = React.useContext(OrderContext);
+  console.log(dateValue, "dateValue");
 
   const handleSelectDate = (selectedDate) => {
     const today = moment(); // Get today's date using moment.js

@@ -45,7 +45,6 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       const response = await axios.get("/api/order");
       const orders = response?.data?.data;
       setConfirmedOrders(orders);
-      console.log(orders, "orders");
     } catch (error) {
       console.log(error);
       toast.error(error.message);
@@ -121,12 +120,6 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       console.log(ordersForDate, "ordersForDate");
       // Check if the number of confirmed orders for the selected date exceeds the maximum allowed members
       if (ordersForDate.length > maxAllowedOrders) {
-        toast.error(
-          "Maximum allowed members for this date has been exceeded.",
-          {
-            duration: 2000,
-          }
-        );
         throw new Error(
           "Maximum allowed members for this date has been exceeded."
         );
@@ -150,7 +143,9 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
           console.log(stripeData.url);
         }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.message, {
+        duration: 2000,
+      });
     } finally {
       setIsLoading(false);
     }

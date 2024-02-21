@@ -7,7 +7,6 @@ export const POST = async (req) => {
   try {
     const order = await req.json();
 
-    console.log(order, "Order Coming in checkout route");
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       success_url: `${process.env.CLIENT_URL}/checkout-success`,

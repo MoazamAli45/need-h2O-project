@@ -38,11 +38,7 @@ function UpdateMaximumOrders() {
         maxAllowedOrders: newMaxAllowedOrders,
       });
       const updatedMaxAllowedOrders = response?.data?.data.maxAllowedOrders;
-      // You can handle the updated value as needed
-      console.log(
-        "Maximum allowed orders updated to:",
-        updatedMaxAllowedOrders
-      );
+
       // Optionally, you can notify the user about the successful update
       toast.success("Maximum allowed orders updated successfully", {
         duration: 2000,

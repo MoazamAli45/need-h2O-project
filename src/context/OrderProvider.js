@@ -11,7 +11,7 @@ export const OrderProvider = ({ children }) => {
     address: "",
     profile: "",
     details: "",
-    date: "",
+    date: new Date(),
     price: 0,
     totalPrice: 0,
     submitted: false,

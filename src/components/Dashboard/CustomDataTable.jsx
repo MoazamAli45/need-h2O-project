@@ -47,8 +47,6 @@ function CustomDataTable() {
     );
   }
 
-  console.log(data, "Data");
-
   return (
     <Table className="mb-4">
       <TableHeader>
