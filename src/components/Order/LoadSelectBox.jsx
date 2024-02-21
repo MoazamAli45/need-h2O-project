@@ -59,8 +59,6 @@ function LoadSelectBox() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedValue, order?.price]);
 
-  console.log(order);
-
   return (
     <>
       <div className="flex flex-col gap-4 w-[80%] mx-auto ">
