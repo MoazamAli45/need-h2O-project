@@ -41,9 +41,6 @@ export const POST = async (req) => {
       );
 
     const order = new Order(body);
-    // const utcDate = order.date.toISOString();
-    // console.log("UTC date", utcDate);
-    // order.date = utcDate;
 
     // Save the order document to the database
     await order.save();
