@@ -101,8 +101,6 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
     }
   };
 
-  console.log(order, "order");
-
   //   CHECKOUT HANDLER
   //  Step 3
   const checkoutHandler = async () => {
@@ -130,7 +128,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
           "Content-Type": "application/json",
         },
       });
-      console.log(response, "response");
+      // console.log(response, "response");
 
       if (!response.data.success) {
         throw new Error(response.data.error || "Something went wrong!");
@@ -139,7 +137,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       if (typeof window !== "undefined")
         if (stripeData?.success) {
           window.location.href = stripeData.url;
-          console.log(stripeData.url);
+          // console.log(stripeData.url);
         }
     } catch (error) {
       toast.error(error.message, {
@@ -154,7 +152,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
 
   return (
     <Wrapper>
-      <div className="stepper mt-8">
+      <div className="stepper pt-14">
         {stepsConfig.map((step, index) => {
           return (
             <div

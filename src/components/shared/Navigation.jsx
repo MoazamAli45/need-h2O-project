@@ -14,7 +14,6 @@ const Navigation = () => {
     setIsDrawerOpen((prev) => !prev);
   };
 
-  console.log(pathname, "Pathname");
   return (
     <div>
       <Wrapper styles="px-0 sm:px-8 md:px-14">

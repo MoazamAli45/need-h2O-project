@@ -21,6 +21,7 @@ module.exports = {
         primaryColor: " #009963",
         cyan: "#A1824A",
         bluePrimary: "#007bff",
+        "bluePrimary-light": "#D6ECFF",
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

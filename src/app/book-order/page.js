@@ -9,6 +9,7 @@ import { FaDollarSign } from "react-icons/fa";
 import OrderOptions from "@/components/Order/OrderOptions";
 import DeliveryDetails from "@/components/Order/DeliveryDetails";
 import { useRouter } from "next/navigation";
+import Footer from "@/components/shared/Footer";
 const CHECKOUT_STEPS = [
   {
     name: "My Location",
@@ -43,9 +44,12 @@ const Page = () => {
   }, [order.address, router]);
 
   return (
-    <div>
-      <CheckoutStepper stepsConfig={CHECKOUT_STEPS} />
-    </div>
+    <>
+      <div className="bg-bluePrimary-light">
+        <CheckoutStepper stepsConfig={CHECKOUT_STEPS} />
+      </div>
+      <Footer styles={"bg-black"} textFooter="white" />
+    </>
   );
 };
 

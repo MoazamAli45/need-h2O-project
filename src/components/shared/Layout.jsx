@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
     <>
       <Navigation />
       {children}
-      <Footer />
+      {pathname !== "/book-order" && <Footer />}
     </>
   );
 };

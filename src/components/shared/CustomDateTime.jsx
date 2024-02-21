@@ -59,7 +59,7 @@ function CustomDate() {
       mode="single"
       selected={dateValue}
       onSelect={handleSelectDate}
-      className="rounded-md border"
+      className="rounded-md border-[1px] border-solid border-[#CCCCCC]"
     />
   );
 }
