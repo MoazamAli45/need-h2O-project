@@ -27,32 +27,39 @@
 
 // export default CustomDate;
 
+"use client";
+
 import * as React from "react";
+import moment from "moment"; // Import moment.js library
+import { toast } from "sonner"; // Import the toast function from the sonner library
 import { Calendar } from "@/components/ui/calendar";
 import OrderContext from "@/context/OrderProvider";
-import { isAfter } from "date-fns"; // Importing isAfter function from date-fns
 
 function CustomDate() {
   const [dateValue, setDateValue] = React.useState(new Date());
-
   const { setDate } = React.useContext(OrderContext);
 
-  React.useEffect(() => {
-    setDate(dateValue);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dateValue]);
-
-  // Function to handle date selection
-  const handleSelect = (date) => {
-    // Check if selected date is not in the past
-    setDateValue(date); // Update the selected date
+  const handleSelectDate = (selectedDate) => {
+    const today = moment(); // Get today's date using moment.js
+    const selected = moment(selectedDate);
+    console.log(selected, "Selected", today);
+    if (selected.isBefore(today, "day")) {
+      // If selected date is before today, show error toast and don't update the state
+      toast.error("Don't Select Past Date.", {
+        duration: 2000,
+      });
+    } else {
+      // If selected date is valid, update the state and context
+      setDate(selectedDate);
+      setDateValue(selectedDate);
+    }
   };
 
   return (
     <Calendar
       mode="single"
       selected={dateValue}
-      onSelect={handleSelect} // Pass the handleSelect function
+      onSelect={handleSelectDate}
       className="rounded-md border"
     />
   );
