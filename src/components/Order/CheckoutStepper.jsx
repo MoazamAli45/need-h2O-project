@@ -152,7 +152,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
 
   return (
     <Wrapper>
-      <div className="stepper pt-14">
+      <div className="stepper pt-14 ">
         {stepsConfig.map((step, index) => {
           return (
             <div

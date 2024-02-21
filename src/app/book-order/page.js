@@ -45,7 +45,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="bg-bluePrimary-light">
+      <div className="bg-bluePrimary-light pb-6">
         <CheckoutStepper stepsConfig={CHECKOUT_STEPS} />
       </div>
       <Footer styles={"bg-black"} textFooter="white" />
