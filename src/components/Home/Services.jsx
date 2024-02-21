@@ -56,7 +56,7 @@ const Services = () => {
           </div>
         </div>
         {/*   Grid */}
-        <div className="grid  grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 sm:space-x-4 mt-12">
+        <div className="grid  grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 sm:space-x-4 mt-12 space-y-4 sm:space-y-0 ">
           {services.map((service) => (
             <div key={service.id} className="flex-col space-y-3  ">
               <div className="w-full h-[300px] relative ">
@@ -73,7 +73,7 @@ const Services = () => {
           ))}
         </div>
         {/*  Quality Service */}
-        <div className="mt-14 flex flex-col space-y-3">
+        <div className="mt-6 sm:mt-14 flex flex-col space-y-3">
           <div className="flex flex-col space-y-4">
             <h2 className="font-bold text-[28px] md:text-[32px] leading-[30px] md:leading-[40px]">
               Superior Quality Spring Water
