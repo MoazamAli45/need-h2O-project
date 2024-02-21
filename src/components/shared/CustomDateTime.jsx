@@ -45,9 +45,7 @@ function CustomDate() {
   // Function to handle date selection
   const handleSelect = (date) => {
     // Check if selected date is not in the past
-    if (!isAfter(date, new Date())) {
-      setDateValue(date); // Update the selected date
-    }
+    setDateValue(date); // Update the selected date
   };
 
   return (
