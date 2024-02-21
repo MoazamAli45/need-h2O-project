@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/table";
 import { formatDateTime } from "@/lib/formatDateTime";
 import { getData } from "@/lib/getData";
+import moment from "moment/moment";
 import React, { useEffect } from "react";
 import { toast } from "sonner";
 
@@ -67,7 +68,9 @@ function CustomDataTable() {
         {data?.map((item, i) => (
           <TableRow key={item._id}>
             <TableCell className="font-medium">{i + 1}</TableCell>
-            <TableCell>{formatDateTime(item.date)}</TableCell>
+            <TableCell>
+              {moment(item.date).format("MMMM Do YYYY,h:mm:ss a")}
+            </TableCell>
             <TableCell>
               {item?.profile.firstName + " " + item?.profile.lastName}
             </TableCell>

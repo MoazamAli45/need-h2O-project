@@ -247,7 +247,7 @@ const DeliveryDetails = () => {
         </div>
       </div>
       {/*  Check Boxes and Below  */}
-      <div className="flex sm:flex-row flex-col  pt-14">
+      <div className="flex sm:flex-row flex-col  space-x-4 md:space-x-0   pt-14 pb-6 sm:mb-0">
         {/*  Checkboxes */}
         <div className="w-full">
           <Label>Tick all boxes that apply to your driveway*</Label>
