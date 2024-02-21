@@ -117,9 +117,8 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
           moment(confirmedOrder.date).format("MMMM Do YYYY") === orderDate
       );
 
-      console.log(ordersForDate, "ordersForDate");
       // Check if the number of confirmed orders for the selected date exceeds the maximum allowed members
-      if (ordersForDate.length > maxAllowedOrders) {
+      if (ordersForDate.length >= maxAllowedOrders) {
         throw new Error(
           "Maximum allowed members for this date has been exceeded."
         );

@@ -82,8 +82,6 @@ const DeliveryDetails = () => {
     profileDetails.driveaway,
   ]);
 
-  console.log(order, "Order");
-
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -116,7 +114,6 @@ const DeliveryDetails = () => {
 
   const handleInputChange = (e, fieldName) => {
     const { value } = e.target;
-    console.log(fieldName, "comments");
     if (fieldName === "email") {
       validateEmail(value);
     } else validateField(fieldName, value);
@@ -145,8 +142,6 @@ const DeliveryDetails = () => {
     }));
   };
 
-  console.log(profileDetails, "Profile Details");
-  console.log(errors, "error");
   return (
     <form className="w-[95%] md:w-[80%] mx-auto py-8 flex flex-col space-y-6">
       <div className="flex gap-4 sm:flex-row flex-col">
