@@ -80,7 +80,6 @@ const SearchInput = () => {
     );
 
     if (cityFound.length > 0) {
-      console.log(cityFound);
       setDetails(cityFound[0]);
       router.push("/book-order");
     } else {
@@ -96,6 +95,7 @@ const SearchInput = () => {
       `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_PLACES_SEARCH_API}&libraries=places`,
       () => handleScriptLoad(setQuery, autoCompleteRef)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -110,7 +110,7 @@ const SearchInput = () => {
           onChange={(event) => setQuery(event.target.value)}
         />
         <button
-          className="absolute    md:right-2 md:top-2  rounded-full border-none bg-primaryColor  text-white text-lg cursor-pointer px-4 py-3  focus:outline-none font-semibold text-[16px] hidden  md:block"
+          className="absolute    md:right-2 md:top-2  rounded-full border-none bg-bluePrimary  text-white text-lg cursor-pointer px-4 py-3  focus:outline-none font-semibold text-[16px] hidden  md:block hover:bg-bluePrimary/[.90]"
           type="submit"
           onClick={submitHandler}
         >

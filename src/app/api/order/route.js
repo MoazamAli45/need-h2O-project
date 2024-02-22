@@ -7,7 +7,7 @@ export const POST = async (req) => {
     try {
       await connect();
       const body = await req.json();
-       body.date = new Date(body.date).toUTCString();
+      body.date = new Date(body.date).toUTCString();
       // Create a new order document
       const order = new Order(body);
 
@@ -31,7 +31,7 @@ export const GET = async (req) => {
   if (req.method === "GET") {
     try {
       await connect();
-      const orders = await Order.find();
+      const orders = await Order.find().sort({ date: -1 });
       return new NextResponse(
         JSON.stringify({
           status: 200,

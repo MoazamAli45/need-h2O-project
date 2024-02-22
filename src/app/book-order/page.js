@@ -39,7 +39,7 @@ const Page = () => {
   // console.log(router, "ROuter");
   useEffect(() => {
     if (!order.address) {
-      // router.push("/"); // Redirect to '/' if no order address
+      router.push("/"); // Redirect to '/' if no order address
     }
   }, [order.address, router]);
 
@@ -48,7 +48,7 @@ const Page = () => {
       <div className="bg-bluePrimary-light pb-6">
         <CheckoutStepper stepsConfig={CHECKOUT_STEPS} />
       </div>
-      <Footer styles={"bg-black"} textFooter="white" />
+      <Footer />
     </>
   );
 };

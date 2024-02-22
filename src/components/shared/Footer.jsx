@@ -5,10 +5,10 @@ import { CiFacebook } from "react-icons/ci";
 import { CiTwitter } from "react-icons/ci";
 import { RxInstagramLogo } from "react-icons/rx";
 
-const Footer = ({ textFooter = "cyan", styles }) => (
+const Footer = ({ styles = "bg-black", textFooter = "white" }) => (
   <footer className={`py-4 md:py-8 ${styles}`}>
     <Wrapper>
-      <div className="flex justify-around">
+      {/* <div className="flex justify-around">
         <Link
           href="/"
           className={`font-normal text-[14px] sm:text-[16px] text-${textFooter}`}
@@ -21,13 +21,13 @@ const Footer = ({ textFooter = "cyan", styles }) => (
         >
           Terms of Service
         </Link>
-      </div>
+      </div> */}
       <div className="mt-4 flex flex-col gap-2 items-center justify-center">
-        <div className="flex space-x-4">
+        {/* <div className="flex space-x-4">
           <CiFacebook className={`text-[20px] text-${textFooter}`} />
           <CiTwitter className={`text-[20px] text-${textFooter}`} />
           <RxInstagramLogo className={`text-[20px] text-${textFooter}`} />
-        </div>
+        </div> */}
         <span
           className={`font-normal text-[14px] sm:text-[16px] text-${textFooter}`}
         >

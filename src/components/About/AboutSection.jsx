@@ -5,7 +5,7 @@ const AboutSection = () => {
   return (
     <section>
       <Wrapper>
-        <div className="flex  flex-wrap flex-col space-y-4 my-2">
+        <div className="flex  flex-wrap flex-col space-y-4 py-8">
           <div className="relative w-full h-[400px]">
             <Image
               src="/about/about.jpg"

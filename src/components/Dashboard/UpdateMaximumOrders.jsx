@@ -24,7 +24,6 @@ function UpdateMaximumOrders() {
     try {
       const response = await axios.get("/api/settings");
       const maxAllowedOrders = response?.data?.data[0].maxAllowedOrders;
-      console.log(maxAllowedOrders, "maxAllowedOrders");
       setMaxAllowedOrders(maxAllowedOrders);
     } catch (error) {
       console.log(error);

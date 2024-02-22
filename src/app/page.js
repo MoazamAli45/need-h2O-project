@@ -7,11 +7,11 @@ import Navigation from "@/components/shared/Navigation";
 
 export default function Home() {
   return (
-    <>
+    <div className="bg-bluePrimary-dark">
       <Hero />
       <Services />
       <Faq />
       <Contact />
-    </>
+    </div>
   );
 }

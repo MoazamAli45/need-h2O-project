@@ -19,7 +19,7 @@ const services = [
 const Services = () => {
   const router = useRouter();
   return (
-    <section className="my-2">
+    <section className="py-8">
       <Wrapper>
         <div className="flex xl:flex-row flex-col justify-center gap-6 ">
           <div className="relative max-w-full w-full  xl:w-[500px]  xl:flex-1 h-[350px]   sm:h-[430px]">

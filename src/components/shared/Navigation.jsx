@@ -21,8 +21,8 @@ const Navigation = () => {
           <Image
             src={"/home/logo.jpg"}
             alt="logo"
-            width={180}
-            height={70}
+            width={150}
+            height={60}
             priority
           />
           <div className="hidden sm:flex gap-6 sm:pr-8 ">

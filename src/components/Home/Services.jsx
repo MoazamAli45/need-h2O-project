@@ -50,7 +50,10 @@ const Services = () => {
               Delivering 11,000 litres per load. With competitive prices and
               quick delivery timeframes, we&apos;re the perfect choice.
             </p>
-            <PrimaryButton styles={"justify-self-start self-start"}>
+            <PrimaryButton
+              styles={"justify-self-start self-start"}
+              onClick={() => router.push("/about")}
+            >
               Learn More
             </PrimaryButton>
           </div>

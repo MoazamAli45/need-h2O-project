@@ -7,9 +7,9 @@ import Footer from "@/components/shared/Footer";
 
 const About = () => {
   return (
-    <>
+    <div className="bg-bluePrimary-dark">
       <AboutSection />
-    </>
+    </div>
   );
 };
 

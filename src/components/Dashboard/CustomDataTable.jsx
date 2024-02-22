@@ -59,6 +59,7 @@ function CustomDataTable() {
           <TableHead>Tank Location</TableHead>
           <TableHead>Phone Number</TableHead>
           <TableHead>Service</TableHead>
+          <TableHead>No of Loads</TableHead>
           <TableHead>Price</TableHead>
         </TableRow>
       </TableHeader>
@@ -79,6 +80,7 @@ function CustomDataTable() {
                 ? "Pure Water"
                 : "Town Water"}
             </TableCell>
+            <TableCell>{item?.totalPrice / item?.price}</TableCell>
             <TableCell>${item.totalPrice.toFixed(2)}</TableCell>
           </TableRow>
         ))}

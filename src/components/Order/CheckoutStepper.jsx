@@ -67,6 +67,23 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
   }
 
   const handleNext = () => {
+    if (currentStep === 2) {
+      let error = "";
+      if (order?.price === 0) {
+        error = " water option";
+      } else if (!order?.date) {
+        error = error + " delivery date";
+      } else if (order?.totalPrice === 0) {
+        error = error + " quantity";
+      }
+      if (error) {
+        toast.error(`Please select  ${error}`, {
+          duration: 5000,
+        });
+        return;
+      }
+    }
+
     setCurrentStep((prevStep) => {
       if (prevStep === stepsConfig.length) {
         setIsComplete(true);
@@ -104,6 +121,39 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
   //   CHECKOUT HANDLER
   //  Step 3
   const checkoutHandler = async () => {
+    if (currentStep === 3) {
+      // let error = "";
+      const error = [];
+      if (validateEmail(profile?.email)) {
+        error.push("Please select a valid email.");
+      }
+      if (profile?.phoneNumber.length < 3) {
+        error.push("Please enter a valid phone number.");
+      }
+      if (profile?.tankLocation.length < 3) {
+        error.push("Please enter a valid tank location.");
+      }
+      if (profile?.firstName.length < 3) {
+        error.push("Please enter a valid first name.");
+      }
+      if (profile?.lastName.length < 3) {
+        error.push("Please enter a valid last name.");
+      }
+      if (profile?.distanceFromTank === "") {
+        error.push("Please select a distance from the tank.");
+      }
+      if (profile?.driveaway.length === 0) {
+        error.push("Please select a driveaway option.");
+      }
+
+      if (error.length > 0) {
+        toast.error(`Please select these options: ${error.join(" ")}`, {
+          duration: 5000,
+        });
+        return;
+      }
+    }
+
     try {
       setIsLoading(true);
 
@@ -203,9 +253,6 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
           <Button
             className={`${currentStep === 3 ? "hidden" : ""}`}
             onClick={handleNext}
-            disabled={
-              order?.price === 0 || order?.totalPrice === 0 || !order?.date
-            }
           >
             {currentStep === stepsConfig.length ? "Finish" : "Next"}
           </Button>
@@ -221,15 +268,6 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
           ) : (
             <Button
               className={`${currentStep === 3 ? "block" : "hidden"}  `}
-              disabled={
-                validateEmail(profile?.email) ||
-                profile?.phoneNumber.length < 3 ||
-                profile?.tankLocation.length < 3 ||
-                profile?.firstName.length < 3 ||
-                profile?.lastName.length < 3 ||
-                profile?.distanceFromTank == "" ||
-                profile?.driveaway.length === 0
-              }
               onClick={checkoutHandler}
             >
               Pay Now

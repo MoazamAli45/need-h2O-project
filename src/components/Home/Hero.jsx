@@ -5,9 +5,9 @@ import SearchInput from "../shared/SearchInput";
 
 const Hero = () => {
   return (
-    <section>
+    <section className="pt-8">
       <Wrapper styles=" px-0 sm:px-8 md:px-24 ">
-        <div className="hero-bg   rounded-lg px-4 sm:px-8 md:px-16 py-[80px] sm:py-[80px]  h-[600px]  lg:h-[450px]">
+        <div className="hero-bg   rounded-lg px-4 sm:px-8 md:px-16 py-[80px] sm:py-[70px]  h-[600px]  lg:h-[410px]">
           <h1 className="text-[40px] md:text-[48px] font-extrabold text-center text-white">
             Please enter your address below for phone and order.
           </h1>

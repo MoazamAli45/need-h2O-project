@@ -22,7 +22,6 @@ function WaterSelectBox() {
   const handleChange = (newValue) => {
     setSelectedValue(newValue);
   };
-  // console.log("Detailes", details);
 
   React.useEffect(() => {
     if (selectedValue === details?.townWaterPrice) {
