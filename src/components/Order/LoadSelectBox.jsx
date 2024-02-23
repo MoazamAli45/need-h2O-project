@@ -53,6 +53,7 @@ function LoadSelectBox() {
   const [showPrice, setShowPrice] = React.useState(false);
   const [coupon, setCoupon] = React.useState("");
   const [appliedCoupon, setAppliedCoupon] = React.useState(false);
+  const [discount, setDiscount] = React.useState("");
 
   const handleChange = (newValue) => {
     setSelectedValue(newValue);
@@ -66,8 +67,6 @@ function LoadSelectBox() {
     setLoad(selectedValue);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedValue, order?.price]);
-
-  console.log("order", order);
 
   const couponHandler = async () => {
     if (!coupon) {
@@ -92,6 +91,7 @@ function LoadSelectBox() {
       }
 
       const discountPer = resData.data[0].discount;
+      setDiscount(discountPer);
       const expiry = resData.data[0].expiry;
       // Check if the expiry date is today or in the future compared to the current date
       if (moment(expiry).isSameOrAfter(moment(), "day")) {
@@ -154,6 +154,13 @@ function LoadSelectBox() {
                 onChange={(e) => setCoupon(e.target.value)}
               />
               <Button onClick={couponHandler}>Apply</Button>
+            </div>
+            <div className="flex justify-center">
+              {discount && (
+                <h3 className="text-[18px]">
+                  Discount: {discount}% off your total
+                </h3>
+              )}
             </div>
           </div>
         )}

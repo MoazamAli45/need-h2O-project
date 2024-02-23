@@ -80,7 +80,7 @@ function CustomDataTable() {
                 ? "Pure Water"
                 : "Town Water"}
             </TableCell>
-            <TableCell>{item?.totalPrice / item?.price}</TableCell>
+            <TableCell>{item?.noOfLoads}</TableCell>
             <TableCell>${item.totalPrice.toFixed(2)}</TableCell>
           </TableRow>
         ))}
