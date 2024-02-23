@@ -117,7 +117,7 @@ const SearchInput = () => {
           Place Order
         </button>
         <button
-          className="absolute  mt-2 w-full z-10     rounded-full border-none bg-primaryColor  text-white text-lg cursor-pointer px-4 py-3  focus:outline-none font-semibold text-[16px] block  md:hidden"
+          className="absolute  mt-2 w-full z-10     rounded-full border-none bg-bluePrimary  text-white text-lg cursor-pointer px-4 py-3  focus:outline-none font-semibold text-[16px] block  md:hidden"
           type="submit"
           onClick={submitHandler}
         >
