@@ -87,7 +87,7 @@ function CustomDataTable() {
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={8}>Total</TableCell>
+          <TableCell colSpan={9}>Total</TableCell>
           <TableCell>
             ${data?.reduce((acc, curr) => acc + curr.totalPrice, 0)}.00
           </TableCell>

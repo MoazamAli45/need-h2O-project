@@ -12,7 +12,7 @@ const AddCoupon = () => {
   const [discount, setDiscount] = useState("");
 
   const dateHandler = (selectedDate) => {
-    setDate(selectedDate);
+    setDate(selectedDate.toString());
   };
 
   const submitHandler = async () => {
@@ -24,6 +24,16 @@ const AddCoupon = () => {
     }
 
     try {
+      const resCheck = await axios.get(`/api/v1/coupon/${coupon}`);
+      const resCheckData = resCheck.data;
+      if (resCheckData.status !== 200) {
+        throw new Error(resCheckData.message);
+      }
+
+      if (resCheckData.data.length !== 0) {
+        throw new Error("Coupon already exists");
+      }
+
       const data = {
         code: coupon,
         discount,

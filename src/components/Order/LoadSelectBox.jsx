@@ -79,7 +79,6 @@ function LoadSelectBox() {
       if (resData.status !== 200) {
         throw new Error(resData.message);
       }
-      console.log("resData", resData);
 
       if (resData.data.length === 0) {
         throw new Error("Invalid Coupon Code");
@@ -93,6 +92,7 @@ function LoadSelectBox() {
       const discountPer = resData.data[0].discount;
       setDiscount(discountPer);
       const expiry = resData.data[0].expiry;
+      console.log(expiry);
       // Check if the expiry date is today or in the future compared to the current date
       if (moment(expiry).isSameOrAfter(moment(), "day")) {
         console.log(
