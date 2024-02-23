@@ -4,6 +4,7 @@ import CustomDataTable from "./CustomDataTable";
 import { getData } from "@/lib/getData";
 import { toast } from "sonner";
 import UpdateMaximumOrders from "./UpdateMaximumOrders";
+import AddCoupon from "./AddCoupon";
 
 const Dashboard = () => {
   const [data, setData] = React.useState([]);
@@ -59,10 +60,11 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="flex  justify-end my-4 max-w-7xl px-6 mx-auto  w-full">
+      <div className="flex flex-col space-y-4 custom-lg:flex-row  justify-between my-4 max-w-7xl px-6 mx-auto  w-full ">
+        <AddCoupon />
         <UpdateMaximumOrders />
       </div>
-      <div className="max-w-7xl md:px-6 mx-auto">
+      <div className="max-w-7xl md:px-6 mx-auto ">
         <CustomDataTable />
       </div>
     </>

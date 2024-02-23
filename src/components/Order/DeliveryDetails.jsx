@@ -4,7 +4,6 @@ import { Input } from "../ui/input";
 import OrderContext from "@/context/OrderProvider";
 import Link from "next/link";
 import CustomTextArea from "../shared/CustomTextArea";
-import CustomCheckbox from "../shared/CustomCheckbox";
 import CustomSelectBox from "../shared/CustomSelectBox";
 
 const driveAwayData = [
@@ -39,7 +38,7 @@ const DeliveryDetails = () => {
     email: "",
     phoneNumber: "",
     tankLocation: "",
-    deliveryTime: "",
+
     distanceFromTank: "",
     comments: "",
   });
@@ -54,7 +53,7 @@ const DeliveryDetails = () => {
       phoneNumber,
       tankLocation,
       comments,
-      deliveryTime,
+
       distanceFromTank,
       driveaway,
     } = profileDetails;
@@ -65,7 +64,7 @@ const DeliveryDetails = () => {
       phoneNumber,
       tankLocation,
       comments,
-      deliveryTime,
+
       distanceFromTank,
       driveaway,
     });
@@ -77,7 +76,7 @@ const DeliveryDetails = () => {
     profileDetails.phoneNumber,
     profileDetails.tankLocation,
     profileDetails.comments,
-    profileDetails.deliveryTime,
+
     profileDetails.distanceFromTank,
     profileDetails.driveaway,
   ]);
@@ -225,7 +224,7 @@ const DeliveryDetails = () => {
           </div>
         </div>
         <div className="flex flex-col gap-4 flex-1 ">
-          <Label>Describe your tank location*</Label>
+          <Label>Describe your tank location</Label>
           <div className="h-[45px] flex flex-col gap-[5px]">
             <CustomTextArea
               placeholder="Describe Tank Location"
@@ -245,7 +244,7 @@ const DeliveryDetails = () => {
       <div className="flex sm:flex-row flex-col  space-x-4 md:space-x-0   pt-14 pb-6 sm:mb-0">
         {/*  Checkboxes */}
         <div className="w-full">
-          <Label>Tick all boxes that apply to your driveway*</Label>
+          <Label>Tick all boxes that apply to your driveway</Label>
           <div className="flex flex-col gap-2 mt-4">
             {driveAwayData.map((data, i) => (
               <div key={i} className="flex items-center gap-2">
@@ -262,7 +261,7 @@ const DeliveryDetails = () => {
         </div>
         {/*  right side */}
         <div className="flex flex-col gap-4 w-full">
-          <div className="flex flex-col gap-4 w-full">
+          {/* <div className="flex flex-col gap-4 w-full">
             <Label className="leading-6">
               Are you happy to receive a night delivery between 8:30pm -
               11:30pm?
@@ -275,9 +274,9 @@ const DeliveryDetails = () => {
               onChange={(e) => handleInputChange(e, "deliveryTime")}
               value={profileDetails.deliveryTime}
             />
-          </div>
+          </div> */}
           <div className="flex flex-col gap-4 w-full">
-            <Label className="leading-6">Distance from tank to truck*</Label>
+            <Label className="leading-6">Distance from tank to truck</Label>
             <CustomSelectBox
               value1={"10 meters"}
               value2={"20 meters"}

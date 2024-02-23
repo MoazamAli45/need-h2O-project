@@ -14,7 +14,6 @@ const orderSchema = new mongoose.Schema(
         phoneNumber: String,
         distanceFromTank: String,
         tankLocation: String,
-        deliveryTime: String,
         comments: String,
         driveaway: [String],
       },
@@ -41,6 +40,11 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: true,
       default: 0,
+    },
+    noOfLoads: {
+      type: Number,
+      required: true,
+      default: 1,
     },
   },
   {

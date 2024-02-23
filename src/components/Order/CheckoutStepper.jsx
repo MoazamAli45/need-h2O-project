@@ -70,11 +70,11 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
     if (currentStep === 2) {
       let error = "";
       if (order?.price === 0) {
-        error = " water option";
+        error = "service";
       } else if (!order?.date) {
         error = error + " delivery date";
       } else if (order?.totalPrice === 0) {
-        error = error + " quantity";
+        error = error + " Load";
       }
       if (error) {
         toast.error(`Please select  ${error}`, {
@@ -130,9 +130,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       if (profile?.phoneNumber.length < 3) {
         error.push("Please enter a valid phone number.");
       }
-      if (profile?.tankLocation.length < 3) {
-        error.push("Please enter a valid tank location.");
-      }
+
       if (profile?.firstName.length < 3) {
         error.push("Please enter a valid first name.");
       }
@@ -142,12 +140,10 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       if (profile?.distanceFromTank === "") {
         error.push("Please select a distance from the tank.");
       }
-      if (profile?.driveaway.length === 0) {
-        error.push("Please select a driveaway option.");
-      }
 
       if (error.length > 0) {
-        toast.error(`Please select these options: ${error.join(" ")}`, {
+        toast.error(`Please select these options: `, {
+          description: `${error.join(" ")}`,
           duration: 5000,
         });
         return;

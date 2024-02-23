@@ -14,7 +14,7 @@ export const OrderProvider = ({ children }) => {
     date: new Date(),
     price: 0,
     totalPrice: 0,
-    submitted: false,
+    load: 0,
   };
 
   // Create a state variable to hold the order state
@@ -47,6 +47,9 @@ export const OrderProvider = ({ children }) => {
   const setTotalPrice = (totalPrice) => {
     setOrder((prevOrder) => ({ ...prevOrder, totalPrice }));
   };
+  const setLoad = (load) => {
+    setOrder((prevOrder) => ({ ...prevOrder, load }));
+  };
 
   // Create an object to hold the state and update functions
   const orderContextValue = {
@@ -58,6 +61,7 @@ export const OrderProvider = ({ children }) => {
     setSubmitted,
     setDate,
     setTotalPrice,
+    setLoad,
   };
 
   // Render the OrderProvider component with the orderContextValue

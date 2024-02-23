@@ -80,6 +80,7 @@ module.exports = {
       },
       screens: {
         "custom-md": "1000px",
+        "custom-lg": "1100px",
       },
     },
   },
