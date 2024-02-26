@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <section className="pt-8">
       <Wrapper styles=" px-0 sm:px-8 md:px-24 ">
-        <div className="hero-bg   rounded-lg px-4 sm:px-8 md:px-16 py-[80px] sm:py-[70px]  h-[600px]  lg:h-[410px]">
+        <div className="hero-bg   rounded-lg px-4 sm:px-8 md:px-16 py-[80px] sm:py-[70px]  h-[600px]  lg:h-[450px]">
           <h1 className="text-[40px] md:text-[48px] font-extrabold text-center text-white">
             Please enter your address below for phone and order.
           </h1>
@@ -18,12 +18,12 @@ const Hero = () => {
             <SearchInput />
           </div>
         </div>
-        <p className="text-[14px] text-[#A1824A] font-medium text-center mt-2  ">
+        {/* <p className="text-[14px] text-[#A1824A] font-medium text-center mt-2  ">
           PLEASE NOTE: Due to the amount of deliveries and wait times at the
           uptown we cannot guarantee your delivery will be on the exact time
           selected. Our driver will call you when he is on his way with your
           delivery.
-        </p>
+        </p> */}
       </Wrapper>
     </section>
   );
