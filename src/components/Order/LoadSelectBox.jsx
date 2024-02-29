@@ -60,7 +60,7 @@ function LoadSelectBox() {
 
     setShowPrice(true);
   };
-  console.log(order, "Order");
+  // console.log(order, "Order");
 
   React.useEffect(() => {
     const totalPrice = selectedValue * order?.price;
