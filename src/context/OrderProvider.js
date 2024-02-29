@@ -14,7 +14,7 @@ export const OrderProvider = ({ children }) => {
     date: new Date(),
     price: 0,
     totalPrice: 0,
-    load: 0,
+    noOfLoads: 0,
   };
 
   // Create a state variable to hold the order state
@@ -47,8 +47,8 @@ export const OrderProvider = ({ children }) => {
   const setTotalPrice = (totalPrice) => {
     setOrder((prevOrder) => ({ ...prevOrder, totalPrice }));
   };
-  const setLoad = (load) => {
-    setOrder((prevOrder) => ({ ...prevOrder, load }));
+  const setLoad = (noOfLoads) => {
+    setOrder((prevOrder) => ({ ...prevOrder, noOfLoads }));
   };
 
   // Create an object to hold the state and update functions
