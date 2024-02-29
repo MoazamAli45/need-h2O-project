@@ -21,35 +21,35 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
   const [loading, setIsLoading] = useState(false);
 
   //   Max Allowed Orders
-  const [maxAllowedOrders, setMaxAllowedOrders] = useState(0);
-  const [confirmedOrders, setConfirmedOrders] = useState([]);
+  // const [maxAllowedOrders, setMaxAllowedOrders] = useState(0);
+  // const [confirmedOrders, setConfirmedOrders] = useState([]);
 
   const stepRef = useRef([]);
   //    data from useContext
   const { order } = useContext(OrderContext);
   const { profile } = order;
 
-  const fetchSettings = async () => {
-    try {
-      const response = await axios.get("/api/settings");
-      const maxAllowedOrders = response?.data?.data[0].maxAllowedOrders;
-      setMaxAllowedOrders(maxAllowedOrders);
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
-    }
-  };
+  // const fetchSettings = async () => {
+  //   try {
+  //     const response = await axios.get("/api/settings");
+  //     const maxAllowedOrders = response?.data?.data[0].maxAllowedOrders;
+  //     setMaxAllowedOrders(maxAllowedOrders);
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error(error.message);
+  //   }
+  // };
 
-  const fetchOrders = async () => {
-    try {
-      const response = await axios.get("/api/order");
-      const orders = response?.data?.data;
-      setConfirmedOrders(orders);
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
-    }
-  };
+  // const fetchOrders = async () => {
+  //   try {
+  //     const response = await axios.get("/api/order");
+  //     const orders = response?.data?.data;
+  //     setConfirmedOrders(orders);
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error(error.message);
+  //   }
+  // };
 
   useEffect(() => {
     setMargins({
@@ -58,14 +58,15 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
     });
 
     //  settings
-    fetchSettings();
-    fetchOrders();
+    // fetchSettings();
+    // fetchOrders();
   }, [stepRef, stepsConfig.length]);
 
   if (!stepsConfig.length) {
     return <></>;
   }
 
+  console.log(order, "order");
   const handleNext = () => {
     if (currentStep === 2) {
       let error = "";
@@ -153,20 +154,20 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
     try {
       setIsLoading(true);
 
-      // Get the selected order date
-      const orderDate = moment(order.date).format("MMMM Do YYYY");
-      // Filter confirmed orders for the selected date
-      const ordersForDate = confirmedOrders.filter(
-        (confirmedOrder) =>
-          moment(confirmedOrder.date).format("MMMM Do YYYY") === orderDate
-      );
+      // // Get the selected order date
+      // const orderDate = moment(order.date).format("MMMM Do YYYY");
+      // // Filter confirmed orders for the selected date
+      // const ordersForDate = confirmedOrders.filter(
+      //   (confirmedOrder) =>
+      //     moment(confirmedOrder.date).format("MMMM Do YYYY") === orderDate
+      // );
 
-      // Check if the number of confirmed orders for the selected date exceeds the maximum allowed members
-      if (ordersForDate.length >= maxAllowedOrders) {
-        throw new Error(
-          "Maximum allowed members for this date has been exceeded."
-        );
-      }
+      // // Check if the number of confirmed orders for the selected date exceeds the maximum allowed members
+      // if (ordersForDate.length >= maxAllowedOrders) {
+      //   throw new Error(
+      //     "Maximum allowed members for this date has been exceeded."
+      //   );
+      // }
       //   STRIPE CHECKOUT
 
       const response = await axios.post("/api/checkout", order, {
