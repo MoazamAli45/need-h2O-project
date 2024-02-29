@@ -66,7 +66,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
     return <></>;
   }
 
-  console.log(order, "order");
+  // console.log(order, "order");
   const handleNext = () => {
     if (currentStep === 2) {
       let error = "";
