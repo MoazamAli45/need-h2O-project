@@ -45,6 +45,17 @@ function CustomDate() {
   const handleSelectDate = (selectedDate) => {
     const today = moment(); // Get today's date using moment.js
     const selected = moment(selectedDate);
+
+    if (selected.day() === 0) {
+      // 0 represents Sunday
+      // Show toast for selecting Sunday
+      toast.error("Please don't select Sunday.", {
+        duration: 2000,
+      });
+      // Return without updating state or context
+      return;
+    }
+
     if (selected.isBefore(today, "day")) {
       // If selected date is before today, show error toast and don't update the state
       toast.error("Don't Select Past Date.", {
@@ -60,7 +71,7 @@ function CustomDate() {
           (confirmedOrder) =>
             moment(confirmedOrder.date).format("MMMM Do YYYY") === orderDate
         );
-        console.log(ordersForDate.length, maxAllowedOrders - 1);
+        // console.log(ordersForDate.length, maxAllowedOrders - 1);
         // Check if the number of confirmed orders for the selected date exceeds the maximum allowed members
         if (ordersForDate.length >= maxAllowedOrders - 1) {
           toast.error(

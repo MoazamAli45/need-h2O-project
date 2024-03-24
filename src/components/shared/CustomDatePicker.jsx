@@ -21,6 +21,7 @@ function CustomDatePicker({ onSelectDate }) {
   const handleSelectDate = (selectedDate) => {
     const today = moment(); // Get today's date using moment.js
     const selected = moment(selectedDate);
+
     if (selected.isBefore(today, "day")) {
       // If selected date is before today, show error toast and don't update the state
       toast.error("Don't Select Past Date.", {
