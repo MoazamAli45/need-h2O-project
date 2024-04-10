@@ -24,7 +24,7 @@ export const POST = async (req) => {
             product_data: {
               name: "Blake's Quality Water",
               images: [
-                `https://needh2o.co.nz/wp-content/uploads/2021/01/Blakes-Water-Web-Logo.png`,
+                `https://need-h2-o-project.vercel.app/_next/image?url=%2Fhome%2Flogo.jpg&w=384&q=75`,
               ],
             },
           },
