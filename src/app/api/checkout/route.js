@@ -19,12 +19,12 @@ export const POST = async (req) => {
       line_items: [
         {
           price_data: {
-            currency: "usd",
+            currency: "nzd",
             unit_amount: order.totalPrice * 100,
             product_data: {
               name: "Blake's Quality Water",
               images: [
-                `https://need-h2-o-project.vercel.app/_next/image?url=%2Fhome%2Flogo.jpg&w=384&q=75`,
+                `https://www.needh2o.co.nz/_next/image?url=%2Fhome%2Flogo.jpg&w=384&q=75`,
               ],
             },
           },
