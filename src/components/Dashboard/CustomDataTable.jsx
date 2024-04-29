@@ -8,33 +8,62 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { formatDateTime } from "@/lib/formatDateTime";
 import { getData } from "@/lib/getData";
 import moment from "moment/moment";
 import React, { useEffect } from "react";
 import { toast } from "sonner";
+import { Button } from "../ui/button";
+import axios from "axios";
 
-function CustomDataTable() {
+function CustomDataTable(props) {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const orders = await getData();
+      setData(orders);
+    } catch (error) {
+      console.log(error);
+      toast.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchdata = async () => {
-      try {
-        setLoading(true);
-        const orders = await getData();
-        setData(orders);
-      } catch (error) {
-        console.log(error);
-        toast.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchdata();
+    fetchData();
   }, []);
 
   console.log(data);
+
+  const deleteHandler = async (id) => {
+    console.log(id);
+    //   I want to delete the order with the id from the database
+    try {
+      const response = await axios.delete(`/api/order/${id}`);
+
+      console.log(response, "Response from delete request");
+      if (response.status === 200) {
+        // After successful deletion, fetch data again
+        await fetchData();
+        //   Refresh the parent component
+        props.onRefresh();
+        toast.success("Order Deleted  successfully!!", {
+          duration: 2000,
+        });
+      } else {
+        throw new Error("Failed to delete item");
+      }
+    } catch (error) {
+      console.log(error);
+      // Handle error
+      toast.error(error.message, {
+        duration: 2000,
+      });
+    }
+  };
 
   if (loading) {
     return (
@@ -63,6 +92,7 @@ function CustomDataTable() {
           <TableHead>Service</TableHead>
           <TableHead>No of Loads</TableHead>
           <TableHead>Price</TableHead>
+          <TableHead>Action</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -84,6 +114,14 @@ function CustomDataTable() {
             </TableCell>
             <TableCell>{item?.noOfLoads}</TableCell>
             <TableCell>${item.totalPrice.toFixed(2)}</TableCell>
+            <TableCell>
+              <Button
+                variant="destructive"
+                onClick={() => deleteHandler(item._id)}
+              >
+                Delete
+              </Button>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

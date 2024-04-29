@@ -8,6 +8,14 @@ import AddCoupon from "./AddCoupon";
 
 const Dashboard = () => {
   const [data, setData] = React.useState([]);
+
+  //   On delete, the order is removed from the database and the UI is updated
+  const [refresh, setRefresh] = React.useState(false);
+
+  const handleRefresh = () => {
+    setRefresh(!refresh);
+  };
+
   const fetchdata = async () => {
     try {
       const orders = await getData();
@@ -19,7 +27,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchdata();
-  }, []);
+  }, [refresh]);
 
   const totalEarned = data?.reduce((acc, item) => acc + item.totalPrice, 0);
   const totalOrders = data?.length;
@@ -65,7 +73,7 @@ const Dashboard = () => {
         <UpdateMaximumOrders />
       </div>
       <div className="max-w-7xl md:px-6 mx-auto ">
-        <CustomDataTable />
+        <CustomDataTable onRefresh={handleRefresh} />
       </div>
     </>
   );
