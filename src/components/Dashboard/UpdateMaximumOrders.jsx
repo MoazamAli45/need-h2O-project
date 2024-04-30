@@ -14,7 +14,7 @@ import { Label } from "../ui/label";
 import { toast } from "sonner";
 import axios from "axios";
 
-const maxAllowed = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const maxAllowed = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 function UpdateMaximumOrders() {
   const [maxAllowedOrders, setMaxAllowedOrders] = React.useState(0);

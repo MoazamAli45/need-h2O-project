@@ -73,6 +73,7 @@ function CustomDate() {
         );
         // console.log(ordersForDate.length, maxAllowedOrders - 1);
         // Check if the number of confirmed orders for the selected date exceeds the maximum allowed members
+
         if (ordersForDate.length >= maxAllowedOrders - 1) {
           toast.error(
             "Maximum allowed members for this date has been exceeded.",

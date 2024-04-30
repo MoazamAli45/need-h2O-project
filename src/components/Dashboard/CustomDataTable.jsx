@@ -36,10 +36,7 @@ function CustomDataTable(props) {
     fetchData();
   }, []);
 
-  console.log(data);
-
   const deleteHandler = async (id) => {
-    console.log(id);
     //   I want to delete the order with the id from the database
     try {
       const response = await axios.delete(`/api/order/${id}`);

@@ -9,7 +9,6 @@ export const DELETE = async (req, { params }) => {
   try {
     await connect();
     const existingOrder = await Order.findById(orderId);
-    console.log("Existing Order...", existingOrder);
     if (!existingOrder) {
       return new NextResponse(
         JSON.stringify({ success: false, error: "Order not found" })
