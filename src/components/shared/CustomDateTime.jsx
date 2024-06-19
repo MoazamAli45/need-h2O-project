@@ -9,7 +9,8 @@ import axios from "axios";
 
 function CustomDate() {
   const [dateValue, setDateValue] = React.useState();
-  const { setDate } = React.useContext(OrderContext);
+  const { setDate, setMaxLoad, setConfirmOrdersLoad } =
+    React.useContext(OrderContext);
 
   //   Max Allowed Orders
   const [maxAllowedOrders, setMaxAllowedOrders] = React.useState(0);
@@ -18,8 +19,10 @@ function CustomDate() {
   const fetchSettings = async () => {
     try {
       const response = await axios.get("/api/settings");
-      const maxAllowedOrders = response?.data?.data[0].maxAllowedOrders;
-      setMaxAllowedOrders(maxAllowedOrders);
+      const maxAllowedLoads = response?.data?.data[0].maxAllowedLoads;
+      setMaxAllowedOrders(maxAllowedLoads);
+      //  CONTEXT API MAX ORDERS
+      setMaxLoad(maxAllowedLoads);
     } catch (error) {
       console.log(error);
       toast.error(error.message);
@@ -37,7 +40,7 @@ function CustomDate() {
     }
   };
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     fetchOrders();
     fetchSettings();
   }, []);
@@ -63,6 +66,7 @@ function CustomDate() {
       });
     } else {
       //     Now Checking if the order has not exceeded the maximum allowed orders
+
       try {
         // Get the selected order date
         const orderDate = moment(selectedDate).format("MMMM Do YYYY");
@@ -71,10 +75,15 @@ function CustomDate() {
           (confirmedOrder) =>
             moment(confirmedOrder.date).format("MMMM Do YYYY") === orderDate
         );
-        // console.log(ordersForDate.length, maxAllowedOrders - 1);
+        console.log(ordersForDate, maxAllowedOrders - 1, "Both");
+        const totalNumberOfLoads = ordersForDate.reduce(
+          (acc, curr) => acc + curr.noOfLoads,
+          0
+        );
+        //  CONTEXT API CONFIRM ORDERS  Loads
+        setConfirmOrdersLoad(totalNumberOfLoads);
         // Check if the number of confirmed orders for the selected date exceeds the maximum allowed members
-
-        if (ordersForDate.length >= maxAllowedOrders - 1) {
+        if (totalNumberOfLoads >= maxAllowedOrders - 1) {
           toast.error(
             "Maximum allowed members for this date has been exceeded.",
             {

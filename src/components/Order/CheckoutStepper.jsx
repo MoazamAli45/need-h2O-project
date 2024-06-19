@@ -56,19 +56,15 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
       marginLeft: stepRef.current[0].offsetWidth / 2,
       marginRight: stepRef.current[stepsConfig.length - 1].offsetWidth / 2,
     });
-
-    //  settings
-    // fetchSettings();
-    // fetchOrders();
   }, [stepRef, stepsConfig.length]);
 
   if (!stepsConfig.length) {
     return <></>;
   }
 
-  // console.log(order, "order");
   const handleNext = () => {
     if (currentStep === 2) {
+      console.log(order, "order");
       let error = "";
       if (order?.price === 0) {
         error = "service";
@@ -76,6 +72,8 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
         error = error + " delivery date";
       } else if (order?.totalPrice === 0) {
         error = error + " Load";
+      } else if (order?.time === "") {
+        error = error + " Time";
       }
       if (error) {
         toast.error(`Please select  ${error}`, {

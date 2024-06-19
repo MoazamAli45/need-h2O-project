@@ -23,24 +23,24 @@ function UpdateMaximumOrders() {
   const fetchSettings = async () => {
     try {
       const response = await axios.get("/api/settings");
-      const maxAllowedOrders = response?.data?.data[0].maxAllowedOrders;
-      setMaxAllowedOrders(maxAllowedOrders);
+      const maxAllowedLoads = response?.data?.data[0].maxAllowedLoads;
+      setMaxAllowedOrders(maxAllowedLoads);
     } catch (error) {
       console.log(error);
       toast.error(error.message);
     }
   };
 
-  const updateSettings = async (newMaxAllowedOrders) => {
+  const updateSettings = async (maxAllowedLoads) => {
     try {
       const response = await axios.put("/api/settings", {
-        maxAllowedOrders: newMaxAllowedOrders,
+        maxAllowedLoads: maxAllowedLoads,
       });
-      const updatedMaxAllowedOrders = response?.data?.data.maxAllowedOrders;
+      const updatedMaxAllowedLoads = response?.data?.data.maxAllowedLoads;
 
-      setMaxAllowedOrders(updatedMaxAllowedOrders);
+      setMaxAllowedOrders(updatedMaxAllowedLoads);
       // Optionally, you can notify the user about the successful update
-      toast.success("Maximum allowed orders updated successfully", {
+      toast.success("Maximum allowed Loads updated successfully", {
         duration: 2000,
       });
     } catch (error) {
@@ -64,7 +64,7 @@ function UpdateMaximumOrders() {
   return (
     <div className="flex flex-col  sm:flex-row gap-2 items-center">
       <div className="flex flex-row gap-2 flex-1">
-        <Label className="text-[12px] gap-2 ">Update MaxOrders:</Label>
+        <Label className="text-[12px] gap-2 ">Update MaxLoads:</Label>
         <Select value={selectedValue} onValueChange={handleChange}>
           <SelectTrigger className="w-full">
             <SelectValue
@@ -85,7 +85,7 @@ function UpdateMaximumOrders() {
         </Select>
       </div>
       <span className="font-semibold">
-        Max Orders per Day:
+        Max Loads per Day:
         <span className="font-normal"> {maxAllowedOrders}</span>
       </span>
     </div>

@@ -1,3 +1,4 @@
+import Loads from "@/model/Loads";
 import Order from "@/model/Order";
 import Settings from "@/model/Settings";
 import connect from "@/utils/db";
@@ -7,11 +8,12 @@ export const GET = async (req) => {
   if (req.method === "GET") {
     try {
       await connect();
-      const settings = await Settings.find();
+      const loads = await Loads.find();
+      // console.log(loads, "GET Loads 😊");
       return new NextResponse(
         JSON.stringify({
           status: 200,
-          data: settings,
+          data: loads,
         })
       );
     } catch (error) {
@@ -37,11 +39,11 @@ export const PUT = async (req) => {
   if (req.method === "PUT") {
     try {
       await connect();
-      const { maxAllowedOrders } = await req.json(); // Assuming maxAllowedOrders is sent in the request body
-      console.log(maxAllowedOrders, "maxAllowedOrders 😊");
-      const settings = await Settings.findOneAndUpdate(
+      const { maxAllowedLoads } = await req.json(); // Assuming maxAllowedLoads is sent in the request body
+      // console.log(maxAllowedLoads, "maxAllowedLoads 😊");
+      const settings = await Loads.findOneAndUpdate(
         {},
-        { maxAllowedOrders },
+        { maxAllowedLoads },
         { new: true }
       );
       return new NextResponse(

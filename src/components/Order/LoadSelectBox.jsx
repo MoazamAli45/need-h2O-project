@@ -55,17 +55,27 @@ function LoadSelectBox() {
   const [appliedCoupon, setAppliedCoupon] = React.useState(false);
   const [discount, setDiscount] = React.useState("");
 
+  const { confirmOrdersLoad, maxLoadAllowed } = order;
+
   const handleChange = (newValue) => {
+    console.log("Load Value", newValue);
+
+    if (newValue >= maxLoadAllowed - confirmOrdersLoad) {
+      toast.error("Maximum allowed members for this date has been exceeded.", {
+        duration: 2000,
+      });
+      return;
+    }
     setSelectedValue(newValue);
 
     setShowPrice(true);
   };
-  // console.log(order, "Order");
 
   React.useEffect(() => {
     const totalPrice = selectedValue * order?.price;
     setTotalPrice(totalPrice);
     setLoad(selectedValue);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedValue, order?.price]);
 

@@ -41,7 +41,6 @@ function CustomDataTable(props) {
     try {
       const response = await axios.delete(`/api/order/${id}`);
 
-      console.log(response, "Response from delete request");
       if (response.status === 200) {
         // After successful deletion, fetch data again
         await fetchData();

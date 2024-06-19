@@ -15,6 +15,8 @@ export const OrderProvider = ({ children }) => {
     price: 0,
     totalPrice: 0,
     noOfLoads: 0,
+    maxLoadAllowed: 0,
+    confirmOrdersLoad: 0,
   };
 
   // Create a state variable to hold the order state
@@ -51,6 +53,14 @@ export const OrderProvider = ({ children }) => {
     setOrder((prevOrder) => ({ ...prevOrder, noOfLoads }));
   };
 
+  const setMaxLoad = (maxLoadAllowed) => {
+    setOrder((prevOrder) => ({ ...prevOrder, maxLoadAllowed }));
+  };
+
+  const setConfirmOrdersLoad = (confirmOrdersLoad) => {
+    setOrder((prevOrder) => ({ ...prevOrder, confirmOrdersLoad }));
+  };
+
   // Create an object to hold the state and update functions
   const orderContextValue = {
     order,
@@ -62,6 +72,8 @@ export const OrderProvider = ({ children }) => {
     setDate,
     setTotalPrice,
     setLoad,
+    setMaxLoad,
+    setConfirmOrdersLoad,
   };
 
   // Render the OrderProvider component with the orderContextValue
