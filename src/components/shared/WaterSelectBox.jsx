@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Label } from "../ui/label";
 import OrderContext from "@/context/OrderProvider";
+import axios from "axios";
 
 function WaterSelectBox() {
   const { order, setPrice } = React.useContext(OrderContext);
@@ -19,21 +20,23 @@ function WaterSelectBox() {
 
   const [selectedValue, setSelectedValue] = React.useState("");
 
-  const [activateTownWater, setActivateTownWater] = React.useState(false);
-  const [activatePureWater, setActivatePureWater] = React.useState(false);
+  const [activateTownWater, setActivateTownWater] = React.useState(true);
+  const [activatePureWater, setActivatePureWater] = React.useState(true);
 
   React.useEffect(() => {
-    const townWaterStatus = localStorage.getItem("activateTownWater");
-    const pureWaterStatus = localStorage.getItem("activatePureWater");
+    const getWaterStates = async () => {
+      try {
+        const response = await axios.get("/api/activate-water");
 
-    console.log(
-      townWaterStatus,
-      "townWaterStatus",
-      pureWaterStatus,
-      "pureWaterStatus"
-    );
-    setActivateTownWater(townWaterStatus === "true");
-    setActivatePureWater(pureWaterStatus === "true");
+        setActivateTownWater(response?.data?.data[0]?.townWater);
+        setActivatePureWater(response?.data?.data[0]?.pureWater);
+      } catch (error) {
+        console.log(error);
+        toast.error(error?.message);
+      }
+    };
+
+    getWaterStates();
   }, []);
 
   React.useEffect(() => {

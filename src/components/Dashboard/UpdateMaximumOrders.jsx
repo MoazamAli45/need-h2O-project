@@ -51,15 +51,20 @@ function UpdateMaximumOrders() {
       }
     };
 
+    const getWaterStates = async () => {
+      try {
+        const response = await axios.get("/api/activate-water");
+
+        setActivateTownWater(response?.data?.data[0]?.townWater);
+        setActivatePureWater(response?.data?.data[0]?.pureWater);
+      } catch (error) {
+        console.log(error);
+        toast.error(error?.message);
+      }
+    };
+
     fetchAreas();
-  }, []);
-
-  React.useEffect(() => {
-    const townWaterStatus = localStorage.getItem("activateTownWater");
-    const pureWaterStatus = localStorage.getItem("activatePureWater");
-
-    setActivateTownWater(townWaterStatus === "true");
-    setActivatePureWater(pureWaterStatus === "true");
+    getWaterStates();
   }, []);
 
   const fetchSettings = async () => {
@@ -105,15 +110,51 @@ function UpdateMaximumOrders() {
     fetchSettings();
   }, [selectedValue]);
 
-  const handleActivateTownWater = () => {
-    setActivateTownWater(!activateTownWater);
-    localStorage.setItem("activateTownWater", !activateTownWater);
+  const handleActivateTownWater = async () => {
+    try {
+      const response = await axios.put("/api/activate-water", {
+        townWater: !activateTownWater,
+        pureWater: activatePureWater,
+      });
+      setActivateTownWater(response.data.data.townWater);
+      if (response.status === 200) {
+        // Optionally, you can notify the user about the successful update
+        toast.success("Town Water activated successfully", {
+          duration: 2000,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      // Notify the user about any error that occurred during the update process
+      toast.error(error.message, {
+        duration: 2000,
+      });
+    }
+  };
+  const handleActivatePureWater = async () => {
+    try {
+      const response = await axios.put("/api/activate-water", {
+        townWater: activateTownWater,
+        pureWater: !activatePureWater,
+      });
+
+      setActivatePureWater(response.data.data.pureWater);
+      if (response.status === 200) {
+        // Optionally, you can notify the user about the successful update
+        toast.success("Town Water activated successfully", {
+          duration: 2000,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      // Notify the user about any error that occurred during the update process
+      toast.error(error.message, {
+        duration: 2000,
+      });
+    }
   };
 
-  const handleActivatePureWater = () => {
-    setActivatePureWater(!activatePureWater);
-    localStorage.setItem("activatePureWater", !activatePureWater);
-  };
+  console.log(activateTownWater, activatePureWater, "Pure");
 
   const closeModalHandler = () => {
     setShowModal(false);
@@ -128,8 +169,6 @@ function UpdateMaximumOrders() {
     setTownWaterPrice(newValue?.townWaterPrice);
     setPureWaterPrice(newValue?.pureWaterPrice);
   };
-
-  console.log(selectedArea);
 
   const updatePriceHandler = async (area, townWaterPrice, pureWaterPrice) => {
     try {
