@@ -57,6 +57,7 @@ const SearchInput = () => {
 
     updateQuery(query);
     setAddress(address);
+    localStorage.setItem("address", address);
     // console.log({ query }, "Query");
   };
 
@@ -81,6 +82,7 @@ const SearchInput = () => {
 
     if (cityFound.length > 0) {
       setDetails(cityFound[0]);
+      localStorage.setItem("details", JSON.stringify(cityFound[0]));
       router.push("/book-order");
     } else {
       alert(

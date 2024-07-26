@@ -1,7 +1,7 @@
 "use client";
 import CheckoutStepper from "@/components/Order/CheckoutStepper";
 import OrderContext from "@/context/OrderProvider";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdLocationPin } from "react-icons/md";
 import { MdWaterDrop } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
@@ -35,14 +35,26 @@ const CHECKOUT_STEPS = [
 
 const Page = () => {
   const router = useRouter();
-  const { order } = useContext(OrderContext);
-  // console.log(router, "ROuter");
-  useEffect(() => {
-    if (!order.address) {
-      router.push("/"); // Redirect to '/' if no order address
-    }
-  }, [order.address, router]);
+  const { order, setAddress, setDetails } = useContext(OrderContext);
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAddress = async () => {
+      setIsLoading(true);
+      const address = localStorage?.getItem("address");
+      const details = JSON.parse(localStorage?.getItem("details"));
+      setAddress(address);
+      setDetails(details);
+      setIsLoading(false);
+
+      if (order.address && order.address.trim() === "") {
+        router.push("/");
+      }
+    };
+
+    fetchAddress();
+  }, [order.address, router]);
   return (
     <>
       <div className="bg-bluePrimary-light pb-6">

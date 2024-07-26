@@ -19,9 +19,22 @@ function WaterSelectBox() {
 
   const [selectedValue, setSelectedValue] = React.useState("");
 
-  const handleChange = (newValue) => {
-    setSelectedValue(newValue);
-  };
+  const [activateTownWater, setActivateTownWater] = React.useState(false);
+  const [activatePureWater, setActivatePureWater] = React.useState(false);
+
+  React.useEffect(() => {
+    const townWaterStatus = localStorage.getItem("activateTownWater");
+    const pureWaterStatus = localStorage.getItem("activatePureWater");
+
+    console.log(
+      townWaterStatus,
+      "townWaterStatus",
+      pureWaterStatus,
+      "pureWaterStatus"
+    );
+    setActivateTownWater(townWaterStatus === "true");
+    setActivatePureWater(pureWaterStatus === "true");
+  }, []);
 
   React.useEffect(() => {
     if (selectedValue === details?.townWaterPrice) {
@@ -31,6 +44,9 @@ function WaterSelectBox() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedValue]);
+  const handleChange = (newValue) => {
+    setSelectedValue(newValue);
+  };
 
   return (
     <div className="flex flex-col gap-4 w-[80%] mx-auto ">
@@ -42,16 +58,20 @@ function WaterSelectBox() {
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Services</SelectLabel>
-            <SelectItem
-              value={details?.townWaterPrice ? details?.townWaterPrice : 0}
-            >
-              TownWater(${details?.townWaterPrice})
-            </SelectItem>
-            <SelectItem
-              value={details?.pureWaterPrice ? details?.pureWaterPrice : 1}
-            >
-              PureWater(${details?.pureWaterPrice})
-            </SelectItem>
+            {activateTownWater && (
+              <SelectItem
+                value={details?.townWaterPrice ? details?.townWaterPrice : 0}
+              >
+                TownWater(${details?.townWaterPrice})
+              </SelectItem>
+            )}
+            {activatePureWater && (
+              <SelectItem
+                value={details?.pureWaterPrice ? details?.pureWaterPrice : 1}
+              >
+                PureWater(${details?.pureWaterPrice})
+              </SelectItem>
+            )}
           </SelectGroup>
         </SelectContent>
       </Select>
