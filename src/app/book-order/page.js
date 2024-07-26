@@ -53,7 +53,6 @@ const Page = () => {
       }
     };
 
-    console.log("order", order?.address, order?.details);
     fetchAddress();
   }, [order.address, router]);
   return (

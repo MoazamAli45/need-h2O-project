@@ -50,6 +50,8 @@ const SearchInput = () => {
     fetchWaterPrices();
   }, []);
 
+  console.log(cityWaterPrices, "City Water Prices");
+
   const handleScriptLoad = (updateQuery, autoCompleteRef) => {
     autoComplete = new window.google.maps.places.Autocomplete(
       autoCompleteRef.current,
