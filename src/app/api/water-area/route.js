@@ -1,10 +1,10 @@
-import cityWaterPrices from "@/constants/data";
 import connect from "@/utils/db";
 import { NextResponse } from "next/server";
 import WaterPrice from "@/model/WaterPrice";
 export const GET = async (req) => {
   if (req.method === "GET") {
     try {
+      await connect();
       const WaterPricesArea = await WaterPrice.find();
       return new NextResponse(
         JSON.stringify({
