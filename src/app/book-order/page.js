@@ -48,11 +48,12 @@ const Page = () => {
       setDetails(details);
       setIsLoading(false);
 
-      if (order.address && order.address.trim() === "") {
+      if (!address || !details) {
         router.push("/");
       }
     };
 
+    console.log("order", order?.address, order?.details);
     fetchAddress();
   }, [order.address, router]);
   return (
