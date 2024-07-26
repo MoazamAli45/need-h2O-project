@@ -9,12 +9,11 @@ const Page = () => {
     setIsAuthenticated(true);
   };
 
-  // return isAuthenticated ? (
-  //   <Dashboard />
-  // ) : (
-  //   <LoginPage authenticateHandler={authenticateHandler} />
-  // );
-  return <Dashboard />;
+  return isAuthenticated ? (
+    <Dashboard />
+  ) : (
+    <LoginPage authenticateHandler={authenticateHandler} />
+  );
 };
 
 export default Page;
