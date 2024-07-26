@@ -78,8 +78,6 @@ function UpdateMaximumOrders() {
     }
   };
 
-  console.log(townWaterPrice, pureWaterPrice);
-
   const updateSettings = async (maxAllowedLoads) => {
     try {
       const response = await axios.put("/api/settings", {
