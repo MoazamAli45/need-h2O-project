@@ -2,10 +2,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 
-import { cityWaterPrices } from "@/constants/data";
 import { useContext } from "react";
 import OrderContext from "@/context/OrderProvider";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 let autoComplete;
 
@@ -32,8 +32,23 @@ const SearchInput = () => {
   const [query, setQuery] = useState("");
   const autoCompleteRef = useRef(null);
 
+  const [cityWaterPrices, setCityWaterPrices] = useState([]);
+
   const router = useRouter();
   const { setAddress, setDetails } = useContext(OrderContext);
+
+  useEffect(() => {
+    const fetchWaterPrices = async () => {
+      try {
+        const response = await axios.get("/api/water-area");
+        setCityWaterPrices(response.data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchWaterPrices();
+  }, []);
 
   const handleScriptLoad = (updateQuery, autoCompleteRef) => {
     autoComplete = new window.google.maps.places.Autocomplete(
