@@ -117,7 +117,7 @@ function UpdateMaximumOrders() {
       setActivateTownWater(response.data.data.townWater);
       if (response.status === 200) {
         // Optionally, you can notify the user about the successful update
-        toast.success("Town Water activated successfully", {
+        toast.success("Town Water updated successfully", {
           duration: 2000,
         });
       }
@@ -139,7 +139,7 @@ function UpdateMaximumOrders() {
       setActivatePureWater(response.data.data.pureWater);
       if (response.status === 200) {
         // Optionally, you can notify the user about the successful update
-        toast.success("Town Water activated successfully", {
+        toast.success("Pure water updated successfully", {
           duration: 2000,
         });
       }
